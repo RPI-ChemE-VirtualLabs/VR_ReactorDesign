@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 65af0fd9073fad1489086b8e6944d1c0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - impellerbutton: {fileID: 9207700561926150270, guid: 96076b98cbae40644a9d953072d6f310,
+      type: 3}
+  - UVbutton: {instanceID: 0}
+  - feedbutton: {instanceID: 0}
+  - impellershaft: {instanceID: 0}
+  - runtimetext: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

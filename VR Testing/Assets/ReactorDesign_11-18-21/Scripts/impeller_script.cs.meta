@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c9527dac7adc65847bfaabe64b905f02
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - impellerbutton: {instanceID: 0}
+  - off: {fileID: 2100000, guid: eb60def5647e50243b8377630e355e84, type: 2}
+  - on: {fileID: 2100000, guid: b412d48a07462b1439fa05cfbfbf32bd, type: 2}
+  - impellershaft: {fileID: 9207700561926150268, guid: 96076b98cbae40644a9d953072d6f310,
+      type: 3}
+  - impellersound: {fileID: 8300000, guid: e9dc3e466edd7d4439f243501dc352ef, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 8ad47699e83458047a25354aafd1a2dd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - impellerbutton: {instanceID: 0}
+  - UVbutton: {instanceID: 0}
+  - feedbutton: {instanceID: 0}
+  - feedscript: {fileID: 215350320331406882, guid: fb727160a96a24746b4a4b9898774dcd,
+      type: 3}
+  - statustext: {instanceID: 0}
+  - UVstatustext: {instanceID: 0}
+  - feedstatustext: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
