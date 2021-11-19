@@ -28,7 +28,9 @@ public class VR_CharacterController : MonoBehaviour {
     private bool lastButtonState = false;
     private List<InputDevice> inputDevices;
 
-    private InputDevice headsetDevice;
+    //private InputDevice headsetDevice;
+    private Camera playerCam;
+    MotionControllerStateCache moConCache;
 
     private void Awake() {
         if (primaryButtonPress == null) {
@@ -36,6 +38,10 @@ public class VR_CharacterController : MonoBehaviour {
         }
 
         inputDevices = new List<InputDevice>();
+
+        playerCam = FindObjectOfType<Camera>(); //look for player camera in scene
+        if(playerCam)
+            print("Player camera found");
     }
 
     void OnEnable() {
@@ -57,10 +63,10 @@ public class VR_CharacterController : MonoBehaviour {
 
     private void InputDevices_deviceConnected(InputDevice device) {
         print("Device connected! " + device.name);
-        if (device.role == InputDeviceRole.Generic) {
+        /*if (device.characteristics == InputDeviceCharacteristics.HeadMounted) {
             headsetDevice = device;
-
-		}
+            print("HMD found! " + device.name);
+        }*/
         inputDevices.Add(device); 
     }
 
@@ -72,26 +78,30 @@ public class VR_CharacterController : MonoBehaviour {
     void Update() {
         bool tempState = false;
         print("dev with primary: " + inputDevices.Count);
+        //todo: figure out how to actually find the controllers. these headsets don't seem to have any characteristics
+
+        //don't try to read input through unity anymore. wmr has its own thing:
+        //https://docs.microsoft.com/en-us/windows/mixed-reality/develop/unity/unity-reverb-g2-controllers
+
         foreach (var device in inputDevices) {
             bool gripButtonState = false;
             Vector2 joystickValue = Vector2.zero;
             tempState = device.TryGetFeatureValue(CommonUsages.secondary2DAxis, out joystickValue); // did get a value
 
             print(device.name);
-            print("js value: " + joystickValue);
+            //print("js value: " + joystickValue);
 
-            Quaternion eyeRotation = Quaternion.identity;
-            float horizontalRotation = eyeRotation.eulerAngles.y;
+            //getting the direct headset rotation is unnecessarily difficult so i'm gonna do this in a jank way
+            //just get the y rotation of the camera attached to the headset and apply that to the player
 
-            headsetDevice.TryGetFeatureValue(CommonUsages.centerEyeRotation, out eyeRotation);
+            float playerCamY = playerCam.transform.rotation.eulerAngles.y; //get hmd rotation from player camera
 
             float speed = 1f;
-            Vector3 movement = new Vector3(joystickValue.x, 0f, joystickValue.y) * speed;
-            Vector3 orientedMovement = Quaternion.AngleAxis(horizontalRotation, Vector3.up) * movement;
-            print(orientedMovement);
-
-            if (orientedMovement.magnitude > 0.1f) transform.position += orientedMovement * Time.deltaTime;
-
+            Vector3 movement = new Vector3(joystickValue.x, 0f, joystickValue.y) * speed; //apply speed to movement vector
+            //print(movement);
+            //print("hmd rotation: " + playerCamY);
+            movement = Quaternion.Euler(0, playerCamY, 0) * movement; // apply y rotation of hmd to movement vector
+            if (movement.magnitude > 0.1f) transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
         }
 
         if (tempState != lastButtonState) { // Button state changed since last frame

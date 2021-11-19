@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Tuner : MonoBehaviour
 {
@@ -16,9 +17,20 @@ public class Tuner : MonoBehaviour
     float sensitivityChangeDivide = 20;
     bool sensitivityChange = false;
 
+    GameObject hand;
+    bool handInRange = false;
+
+    List<InputDevice> playerControllers = new List<InputDevice>();
+    //InputDevices.GetDevicesWithRole(InputDeviceRole.GameController, gameControllers);
+
     // Start is called before the first frame update
     void Start()
     {
+        InputDevices.GetDevices(playerControllers);
+        foreach (var device in playerControllers) {
+            Debug.Log(string.Format("Device name '{0}' has characteristics '{1}'", device.name, device.characteristics.ToString()));
+
+        }
     }
 
     // Update is called once per frame
@@ -26,8 +38,8 @@ public class Tuner : MonoBehaviour
     {
         if (gameObject.GetComponent<Interactable>().isInteractable == true)
         {
-            Cursor.lockState = CursorLockMode.None;
-            float addPercent = -Input.GetAxis("Mouse X") * sensitivity;
+            //Cursor.lockState = CursorLockMode.None;
+            float addPercent = 0;// = -Input.GetAxis("Mouse X") * sensitivity;
 
             Percentage += addPercent;
 
@@ -58,79 +70,28 @@ public class Tuner : MonoBehaviour
                     sensitivityChange = false;
                 }
             }
-
-
-            /*
-            Turning();
-            gameObject.GetComponent<Interactable>().isInteractable = false;
-
-            ResetCFTButton.GetComponent<MeshRenderer>().material = stairprops;
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit clickinfo = new RaycastHit();
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out clickinfo))
-                {
-                    if (clickinfo.collider != null)
-                    {
-                        // ***********************************************************************
-                        if (clickinfo.transform.gameObject.name == "ResetCFTButton")
-                        {
-                            Percentage = 0;
-                            RotateObject.Rotate(0, 0, -1*Percentage);
-                        }
-                    }
-                }
-            }
-            */
         }
     }
 
+	private void OnTriggerEnter(Collider other) {
+        print("something touched the dial");
 
-    /*void Turning()
-    {
-        if (Character.gameObject.GetComponent<CharacterRaycast>().isLeftMouseButton == true)
+        if (other.gameObject.CompareTag("Hand")) //check if hand
         {
-            StartCoroutine("RotatingIncreasing");
-        }
+            //assign gameObject to hand
+            hand = other.gameObject;
+            print("hand found, attached to dial");
 
-        if (Character.gameObject.GetComponent<CharacterRaycast>().isRightMouseButton == true)
-        {
-            StartCoroutine("RotatingDecreasing");
-        }
-    }*/
-
-    /*
-    private void Reset()
-    {
-
-        
-
-    }
-
-    IEnumerator RotatingIncreasing()
-    {
-        yield return new WaitForSeconds(0.3f);
-        RotateObject.Rotate(0, 0, 0.36f, Space.Self);
-        Percentage += 0.001f;
-
-        if (Percentage >= 1f)
-        {
-            Percentage = 0;
+            handInRange = true; //enable selection
         }
     }
 
-    IEnumerator RotatingDecreasing()
-    {
-        yield return new WaitForSeconds(0.3f);
-        RotateObject.Rotate(0, 0, -0.36f, Space.Self);
-        Percentage -= 0.001f;
-        if (Percentage <= 0f)
-        {
-            Percentage = 1;
-        }
+	private void OnTriggerExit(Collider other) {
+        print("something stopped touching the dial");
 
+        if (other.gameObject.CompareTag("Hand")) //check if hand
+        {
+            handInRange = false; //disable selection
+        }
     }
-    */
 }
