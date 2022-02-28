@@ -20,10 +20,10 @@ public class VR_CharacterController : MonoBehaviour {
 }*/
 
 [System.Serializable]
-public class PrimaryButtonEvent : UnityEvent<bool> { }
+public class TriggerEvent : UnityEvent<bool> { }
 
 public class VR_CharacterController : MonoBehaviour {
-    public PrimaryButtonEvent primaryButtonPress;
+    public TriggerEvent triggerPress;
 
     private bool lastButtonState = false;
     private List<InputDevice> inputDevices;
@@ -33,8 +33,8 @@ public class VR_CharacterController : MonoBehaviour {
     MotionControllerStateCache moConCache;
 
     private void Awake() {
-        if (primaryButtonPress == null) {
-            primaryButtonPress = new PrimaryButtonEvent();
+        if (triggerPress == null) {
+            triggerPress = new TriggerEvent();
         }
 
         inputDevices = new List<InputDevice>();
@@ -63,11 +63,18 @@ public class VR_CharacterController : MonoBehaviour {
 
     private void InputDevices_deviceConnected(InputDevice device) {
         print("Device connected! " + device.name);
-        /*if (device.characteristics == InputDeviceCharacteristics.HeadMounted) {
-            headsetDevice = device;
+
+        //bitwise comparisons like these are used to determine if a device has a given characteristic
+        //looks kinda janky but this is how it works in the api
+        if ((device.characteristics & InputDeviceCharacteristics.HeadMounted) == InputDeviceCharacteristics.HeadMounted) {
+            //headsetDevice = device;
             print("HMD found! " + device.name);
-        }*/
-        inputDevices.Add(device); 
+        }
+        inputDevices.Add(device);
+
+        //at some point i'd like to have devices assigned to specific "roles" rather than a vague list of devices
+        //that way we don't have to cycle through every device we need in update, plus we can assign different actions to each hand
+        Debug.Log(device.characteristics);
     }
 
     private void InputDevices_deviceDisconnected(InputDevice device) {
@@ -76,19 +83,19 @@ public class VR_CharacterController : MonoBehaviour {
     }
 
     void Update() {
-        bool tempState = false;
-        print("dev with primary: " + inputDevices.Count);
-        //todo: figure out how to actually find the controllers. these headsets don't seem to have any characteristics
+        //todo: right controller specifically is drifting forward (checked with both controllers, not hw issue), why?
+        //use system of booleans to get input states
+        bool triggerDown = false;
 
-        //don't try to read input through unity anymore. wmr has its own thing:
-        //https://docs.microsoft.com/en-us/windows/mixed-reality/develop/unity/unity-reverb-g2-controllers
-
+        //go through each device to grab input
         foreach (var device in inputDevices) {
-            bool gripButtonState = false;
             Vector2 joystickValue = Vector2.zero;
-            tempState = device.TryGetFeatureValue(CommonUsages.secondary2DAxis, out joystickValue); // did get a value
 
-            print(device.name);
+            device.TryGetFeatureValue(CommonUsages.secondary2DAxis, out joystickValue);
+            device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerDown);
+
+         
+            //print(device.name);
             //print("js value: " + joystickValue);
 
             //getting the direct headset rotation is unnecessarily difficult so i'm gonna do this in a jank way
@@ -104,13 +111,7 @@ public class VR_CharacterController : MonoBehaviour {
             if (movement.magnitude > 0.1f) transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
         }
 
-        if (tempState != lastButtonState) { // Button state changed since last frame
-            primaryButtonPress.Invoke(tempState);
-            lastButtonState = tempState;
-        }
+        if (triggerDown) //trigger event based on input state
+            triggerPress.Invoke(triggerDown);
     }
-
-    public void ButtonPressed(bool pressed) {
-        print("WOO HOOO BUTTON PRESSED: " + pressed);
-	}
 }
