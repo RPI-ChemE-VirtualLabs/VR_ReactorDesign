@@ -20,42 +20,38 @@ public class Tuner : MonoBehaviour
     GameObject hand;
     bool handInRange = false;
 
-    List<InputDevice> playerControllers = new List<InputDevice>();
-    //InputDevices.GetDevicesWithRole(InputDeviceRole.GameController, gameControllers);
-
     // Start is called before the first frame update
     void Start()
     {
-        InputDevices.GetDevices(playerControllers);
-        foreach (var device in playerControllers) {
-            Debug.Log(string.Format("Device name '{0}' has characteristics '{1}'", device.name, device.characteristics.ToString()));
 
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.GetComponent<Interactable>().isInteractable == true)
+        if (handInRange)//gameObject.GetComponent<Interactable>().isInteractable == true)
         {
-            //Cursor.lockState = CursorLockMode.None;
-            float addPercent = 0;// = -Input.GetAxis("Mouse X") * sensitivity;
-
-            Percentage += addPercent;
-
-            Percentage = Mathf.Clamp(Percentage, -1, 1);
-
-            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(-90, 0, 140 * -Percentage - 90));
-
-            Debug.Log("Mouse pos: " + Input.mousePosition.x);
-            //Debug.Log(Percentage); 
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                gameObject.GetComponent<Interactable>().isInteractable = false;
-                Cursor.lockState = CursorLockMode.Locked;
+            float newZ = hand.transform.localRotation.z;
+            if(newZ > 0 && newZ < 180) {
+                newZ = Mathf.Clamp(newZ, 0, 140);
+                Percentage = (newZ + 180) / 280;
+            }
+            else {
+                newZ = Mathf.Clamp(newZ, 360 - (140), 360);
+                Percentage = (newZ - 180) / 280;
             }
 
+            //Percentage = (newZ + 140) / 280;
+
+            //Debug.Log(newZ);
+
+            //Quaternion newRotation = Quaternion.Euler(-90, 0, newZ + 90);
+            //transform.SetPositionAndRotation(transform.position, newRotation);
+
+            transform.SetPositionAndRotation(transform.position, Quaternion.Euler(-90, 0, 140 * Percentage + 90));
+
+            Debug.Log(Percentage); 
+            /*
             //press shift to lower percentage change sensitivity (toggle to make it consistent)
             if (Input.GetKeyDown(KeyCode.LeftShift)) 
             {
@@ -70,6 +66,7 @@ public class Tuner : MonoBehaviour
                     sensitivityChange = false;
                 }
             }
+            */
         }
     }
 
@@ -78,9 +75,10 @@ public class Tuner : MonoBehaviour
 
         if (other.gameObject.CompareTag("Hand")) //check if hand
         {
-            //assign gameObject to hand
-            hand = other.gameObject;
             print("hand found, attached to dial");
+            //assign gameObject to hand
+            hand = other.gameObject; //to get controller instead of collider
+            Debug.Log(hand.name);
 
             handInRange = true; //enable selection
         }
@@ -91,6 +89,7 @@ public class Tuner : MonoBehaviour
 
         if (other.gameObject.CompareTag("Hand")) //check if hand
         {
+            print("hand detatched from dial");
             handInRange = false; //disable selection
         }
     }

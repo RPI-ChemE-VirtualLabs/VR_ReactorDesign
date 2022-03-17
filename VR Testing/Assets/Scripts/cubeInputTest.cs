@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class cubeInputTest : MonoBehaviour
 {
-    MeshRenderer ms;
+    BoxCollider bc;
 
     // Start is called before the first frame update
     void Awake()
     {
-        ms = GetComponent<MeshRenderer>();
+        bc = GetComponent<BoxCollider>();
     }
 
     public void DisableCube(bool show) 
     {
         if (show)
-            ms.enabled = true;
+            bc.enabled = true;
         else
-            ms.enabled = false;
+            bc.enabled = false;
 	}
 }

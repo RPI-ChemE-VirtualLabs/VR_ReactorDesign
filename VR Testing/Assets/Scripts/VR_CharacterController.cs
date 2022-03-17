@@ -32,6 +32,8 @@ public class VR_CharacterController : MonoBehaviour {
     private Camera playerCam;
     MotionControllerStateCache moConCache;
 
+    bool triggerDownLastState = false;
+
     private void Awake() {
         if (triggerPress == null) {
             triggerPress = new TriggerEvent();
@@ -40,8 +42,8 @@ public class VR_CharacterController : MonoBehaviour {
         inputDevices = new List<InputDevice>();
 
         playerCam = FindObjectOfType<Camera>(); //look for player camera in scene
-        if(playerCam)
-            print("Player camera found");
+        //if(playerCam)
+            //print("Player camera found");
     }
 
     void OnEnable() {
@@ -66,15 +68,15 @@ public class VR_CharacterController : MonoBehaviour {
 
         //bitwise comparisons like these are used to determine if a device has a given characteristic
         //looks kinda janky but this is how it works in the api
-        if ((device.characteristics & InputDeviceCharacteristics.HeadMounted) == InputDeviceCharacteristics.HeadMounted) {
+        //if ((device.characteristics & InputDeviceCharacteristics.HeadMounted) == InputDeviceCharacteristics.HeadMounted) {
             //headsetDevice = device;
-            print("HMD found! " + device.name);
-        }
+            //print("HMD found! " + device.name);
+        //}
         inputDevices.Add(device);
 
         //at some point i'd like to have devices assigned to specific "roles" rather than a vague list of devices
         //that way we don't have to cycle through every device we need in update, plus we can assign different actions to each hand
-        Debug.Log(device.characteristics);
+        //Debug.Log(device.characteristics);
     }
 
     private void InputDevices_deviceDisconnected(InputDevice device) {
@@ -94,7 +96,6 @@ public class VR_CharacterController : MonoBehaviour {
             device.TryGetFeatureValue(CommonUsages.secondary2DAxis, out joystickValue);
             device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerDown);
 
-         
             //print(device.name);
             //print("js value: " + joystickValue);
 
@@ -111,7 +112,11 @@ public class VR_CharacterController : MonoBehaviour {
             if (movement.magnitude > 0.1f) transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
         }
 
-        if (triggerDown) //trigger event based on input state
+        if (triggerDown != triggerDownLastState) //trigger event based on input state
+        {
+            Debug.Log("invoke triggerPress with " + triggerDown);
             triggerPress.Invoke(triggerDown);
+        }
+        triggerDownLastState = triggerDown;
     }
 }
