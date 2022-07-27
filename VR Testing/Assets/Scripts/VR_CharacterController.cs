@@ -109,7 +109,7 @@ public class VR_CharacterController : MonoBehaviour {
             //print(movement);
             //print("hmd rotation: " + playerCamY);
             movement = Quaternion.Euler(0, playerCamY, 0) * movement; // apply y rotation of hmd to movement vector
-            if (movement.magnitude > 0.1f) transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
+            if (movement.magnitude > 0.5f) transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
         }
 
         if (triggerDown != triggerDownLastState) //trigger event based on input state
