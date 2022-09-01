@@ -24,6 +24,7 @@ public class TriggerEvent : UnityEvent<bool> { }
 
 public class VR_CharacterController : MonoBehaviour {
     public TriggerEvent triggerPress;
+    public TriggerEvent triggerRelease;
 
     private bool lastButtonState = false;
     private List<InputDevice> inputDevices;
@@ -37,6 +38,7 @@ public class VR_CharacterController : MonoBehaviour {
     private void Awake() {
         if (triggerPress == null) {
             triggerPress = new TriggerEvent();
+            triggerRelease = new TriggerEvent();
         }
 
         inputDevices = new List<InputDevice>();
@@ -114,8 +116,12 @@ public class VR_CharacterController : MonoBehaviour {
 
         if (triggerDown != triggerDownLastState) //trigger event based on input state
         {
-            Debug.Log("invoke triggerPress with " + triggerDown);
-            triggerPress.Invoke(triggerDown);
+            //Debug.Log("invoke triggerPress with " + triggerDown);
+            if (!triggerDown)
+                triggerRelease.Invoke(false);
+            else
+                triggerPress.Invoke(true);
+
         }
         triggerDownLastState = triggerDown;
     }
