@@ -23,7 +23,7 @@ public class Tuner : MonoBehaviour
 
 	// Update is called once per frame
 	void Update() {
-        if (handInRange && VR_CharacterController.lTriggerDown() && )// && VRTriggerDown)//gameObject.GetComponent<Interactable>().isInteractable == true)
+        if (handInRange && lTrigger)// && VRTriggerDown)//gameObject.GetComponent<Interactable>().isInteractable == true)
         {
             //flip hand's transform along x axis to get desired rotation
             Transform handT = hand.transform;
@@ -64,5 +64,7 @@ public class Tuner : MonoBehaviour
         print("something stopped touching the dial");
         handInRange = false;
     }
+
+
 }
 
