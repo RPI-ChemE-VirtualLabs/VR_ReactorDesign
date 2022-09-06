@@ -11280,6 +11280,18 @@ PrefabInstance:
       value: HotFluidTemp
       objectReference: {fileID: 0}
     - target: {fileID: 416010, guid: 5cd2dfb9486b22c408370c471075a10c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 416010, guid: 5cd2dfb9486b22c408370c471075a10c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416010, guid: 5cd2dfb9486b22c408370c471075a10c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416010, guid: 5cd2dfb9486b22c408370c471075a10c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -13363,11 +13375,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Percentage: 0
-  Character: {fileID: 1593388060}
+  Character: {fileID: 0}
   stairprops: {fileID: 0}
   ResetCFTButton: {fileID: 0}
-  sensitivity: 0.01
-  sensitivityChangeDivide: 40
+  sensitivity: 0.001
+  sensitivityChangeDivide: 20
 --- !u!65 &1453408229
 BoxCollider:
   m_ObjectHideFlags: 0

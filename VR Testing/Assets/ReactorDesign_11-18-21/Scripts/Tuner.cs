@@ -8,7 +8,8 @@ public class Tuner : MonoBehaviour
 
     public GameObject Character;
     public Material stairprops;
-    public GameObject ResetCFTButton;
+    //public GameObject ResetCFTButton; the computer is yelling at me too much :(
+    //i'm guessing this has to be manually assigned but. in the mean time i would like to Use The Debug Logs
 
     [SerializeField]
     float sensitivity = .001f;
@@ -20,9 +21,9 @@ public class Tuner : MonoBehaviour
     bool handInRange = false;
     bool VRTriggerDown = false;
 
-    // Update is called once per frame
-    void Update() {
-        if (handInRange && VRTriggerDown)// && VRTriggerDown)//gameObject.GetComponent<Interactable>().isInteractable == true)
+	// Update is called once per frame
+	void Update() {
+        if (handInRange && VR_CharacterController.lTriggerDown() && )// && VRTriggerDown)//gameObject.GetComponent<Interactable>().isInteractable == true)
         {
             //flip hand's transform along x axis to get desired rotation
             Transform handT = hand.transform;
@@ -31,11 +32,12 @@ public class Tuner : MonoBehaviour
 
             //throw out input beyond or below a certain threshold. prevents annoying flipping at extremes
             float threshold = .2f;
-            if (!(360 - newZ < 360 * threshold || 360 - newZ > 360 * (1.0f - threshold)))
+            if (!(360 - newZ < 360 * threshold || 360 - newZ > 360 * (1.0f - threshold))) {
                 Percentage = (360 - newZ) / 360;
-
-            transform.rotation = Quaternion.Euler(0, 0, 180 * Percentage);
-            //Debug.Log("hand rotation at degree " + newZ + ", percentage " + Percentage);
+                //calculate rotation delta and rotate about y
+                float diff = (360 - newZ) - (transform.localRotation.eulerAngles.z + 180);
+                transform.Rotate(0, 0, diff); //did you know! i hate eulers with a burning passion
+            }
         }
     }
 
@@ -59,8 +61,8 @@ public class Tuner : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-    print("something stopped touching the dial");
-    handInRange = false;
+        print("something stopped touching the dial");
+        handInRange = false;
     }
 }
 

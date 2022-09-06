@@ -34,6 +34,10 @@ public class VR_CharacterController : MonoBehaviour {
     MotionControllerStateCache moConCache;
 
     bool triggerDownLastState = false;
+    [HideInInspector] public delegate void triggerAction(float pressure);
+    [HideInInspector] public static event triggerAction triggerLeft;
+    [HideInInspector] public static event triggerAction triggerRight;
+    
 
     private void Awake() {
         if (triggerPress == null) {
@@ -89,14 +93,18 @@ public class VR_CharacterController : MonoBehaviour {
     void Update() {
         //todo: right controller specifically is drifting forward (checked with both controllers, not hw issue), why?
         //use system of booleans to get input states
-        bool triggerDown = false;
+        //bool triggerDown = false;
 
         //go through each device to grab input
+        float leftTriggerVal;
+        float rightTriggerVal;
         foreach (var device in inputDevices) {
             Vector2 joystickValue = Vector2.zero;
 
+            //InputTracking.GetNodeStates
+
             device.TryGetFeatureValue(CommonUsages.secondary2DAxis, out joystickValue);
-            device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerDown);
+            device.TryGetFeatureValue(CommonUsages.trigger, out leftTriggerVal);
 
             //print(device.name);
             //print("js value: " + joystickValue);
@@ -114,15 +122,18 @@ public class VR_CharacterController : MonoBehaviour {
             if (movement.magnitude > 0.5f) transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
         }
 
+        
         if (triggerDown != triggerDownLastState) //trigger event based on input state
         {
             //Debug.Log("invoke triggerPress with " + triggerDown);
             if (!triggerDown)
-                triggerRelease.Invoke(false);
-            else
-                triggerPress.Invoke(true);
+                if (triggerLeft != null)
+                    triggerLeft(1.0f);
+                else
+                    triggerPress.Invoke(true);
 
         }
         triggerDownLastState = triggerDown;
+        
     }
 }
