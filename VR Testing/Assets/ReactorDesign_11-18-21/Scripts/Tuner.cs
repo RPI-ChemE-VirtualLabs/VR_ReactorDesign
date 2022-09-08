@@ -17,18 +17,30 @@ public class Tuner : MonoBehaviour
     float sensitivityChangeDivide = 20;
     bool sensitivityChange = false;
 
-    GameObject hand;
+    GameObject hand = null;
+    bool whichHand = false; // false = left, true = right
     bool handInRange = false;
-    bool VRTriggerDown = false;
+    bool lTriggerDown = false;
+    bool rTriggerDown = false;
+
+    void Awake()
+	{
+        VR_CharacterController.triggerLeft += OnLeftTrigger;
+        VR_CharacterController.triggerRight += OnRightTrigger;
+	}
 
 	// Update is called once per frame
 	void Update() {
-        if (handInRange && lTrigger)// && VRTriggerDown)//gameObject.GetComponent<Interactable>().isInteractable == true)
+        //Debug.Log("i should be working: " + (hand != null && (lTriggerDown || rTriggerDown)));
+        //Debug.Log("hand != null: " + (hand != null));
+        //Debug.Log("lTriggerDown || rTriggerDown: " + (lTriggerDown || rTriggerDown));
+        if (hand != null && ((lTriggerDown && !whichHand) || (rTriggerDown && whichHand)))// && VRTriggerDown)
         {
             //flip hand's transform along x axis to get desired rotation
             Transform handT = hand.transform;
             handT.RotateAround(transform.position, Vector3.left, 180.0f);
             float newZ = handT.transform.rotation.eulerAngles.z;
+            Debug.Log(newZ);
 
             //throw out input beyond or below a certain threshold. prevents annoying flipping at extremes
             float threshold = .2f;
@@ -41,30 +53,54 @@ public class Tuner : MonoBehaviour
         }
     }
 
-    public void VRTriggerChange(bool state) {
-        Debug.Log("VRTriggerDown changed to " + VRTriggerDown);
-        VRTriggerDown = state;
+    public void OnLeftTrigger(float pressure) {
+        if (!whichHand)
+        {
+            lTriggerDown = pressure < .1f ? false : true;
+            //Debug.Log("lTriggerDown changed to " + lTriggerDown);
+        }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        print("something touched the dial");
+    public void OnRightTrigger(float pressure)
+    {
+        if (whichHand)
+        {
+            rTriggerDown = pressure < .1f ? false : true;
+            //Debug.Log("rTriggerDown changed to " + rTriggerDown);
+        }
+    }
 
-        if (other.gameObject.CompareTag("Hand")) //check if hand
+    private void OnTriggerEnter(Collider other)
+    {
+        //print("something touched the dial");
+
+        if (other.gameObject.CompareTag("Right Hand"))
         {
             print("hand found, attached to dial");
             //assign gameObject to hand
-            hand = other.gameObject; //to get controller instead of collider
+            hand = other.gameObject;
             Debug.Log(hand.name);
 
-            handInRange = true;
+            whichHand = true;
+        }
+        else if (other.gameObject.CompareTag("Left Hand"))
+        {
+            print("hand found, attached to dial");
+            //assign gameObject to hand
+            hand = other.gameObject;
+            Debug.Log(hand.name);
+
+            whichHand = false;
         }
     }
 
     private void OnTriggerExit(Collider other) {
         print("something stopped touching the dial");
-        handInRange = false;
+        
+        if(other.gameObject == hand)
+		{
+            hand = null;
+        }
     }
-
-
 }
 

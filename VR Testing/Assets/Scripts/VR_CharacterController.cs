@@ -31,13 +31,16 @@ public class VR_CharacterController : MonoBehaviour {
 
     //private InputDevice headsetDevice;
     private Camera playerCam;
-    MotionControllerStateCache moConCache;
+    //MotionControllerStateCache moConCache;
 
     bool triggerDownLastState = false;
     [HideInInspector] public delegate void triggerAction(float pressure);
     [HideInInspector] public static event triggerAction triggerLeft;
     [HideInInspector] public static event triggerAction triggerRight;
-    
+
+    private InputDevice leftWand;
+    private InputDevice rightWand;
+    //private InputDevice hmd;
 
     private void Awake() {
         if (triggerPress == null) {
@@ -72,17 +75,29 @@ public class VR_CharacterController : MonoBehaviour {
     private void InputDevices_deviceConnected(InputDevice device) {
         print("Device connected! " + device.name);
 
-        //bitwise comparisons like these are used to determine if a device has a given characteristic
-        //looks kinda janky but this is how it works in the api
-        //if ((device.characteristics & InputDeviceCharacteristics.HeadMounted) == InputDeviceCharacteristics.HeadMounted) {
-            //headsetDevice = device;
-            //print("HMD found! " + device.name);
-        //}
+        //look at characteristic bitmasks to see what this controller is for
         inputDevices.Add(device);
+        if((device.characteristics & InputDeviceCharacteristics.HeldInHand) == InputDeviceCharacteristics.HeldInHand)
+		{
+            if((device.characteristics & InputDeviceCharacteristics.Left) == InputDeviceCharacteristics.Left)
+			{
+                Debug.Log("Left wand found");
+                leftWand = device;
+            }
+            else if((device.characteristics & InputDeviceCharacteristics.Right) == InputDeviceCharacteristics.Right)
+			{
+                Debug.Log("Right wand found");
+                rightWand = device;
+			}
+		}
 
-        //at some point i'd like to have devices assigned to specific "roles" rather than a vague list of devices
-        //that way we don't have to cycle through every device we need in update, plus we can assign different actions to each hand
-        //Debug.Log(device.characteristics);
+        /*
+        if((device.characteristics & InputDeviceCharacteristics.HeadMounted) == InputDeviceCharacteristics.HeadMounted)
+		{
+            Debug.Log("HMD found");
+            hmd = device;
+		}
+        */
     }
 
     private void InputDevices_deviceDisconnected(InputDevice device) {
@@ -93,47 +108,29 @@ public class VR_CharacterController : MonoBehaviour {
     void Update() {
         //todo: right controller specifically is drifting forward (checked with both controllers, not hw issue), why?
         //use system of booleans to get input states
-        //bool triggerDown = false;
 
         //go through each device to grab input
         float leftTriggerVal;
         float rightTriggerVal;
-        foreach (var device in inputDevices) {
-            Vector2 joystickValue = Vector2.zero;
-
-            //InputTracking.GetNodeStates
-
-            device.TryGetFeatureValue(CommonUsages.secondary2DAxis, out joystickValue);
-            device.TryGetFeatureValue(CommonUsages.trigger, out leftTriggerVal);
-
-            //print(device.name);
-            //print("js value: " + joystickValue);
-
-            //getting the direct headset rotation is unnecessarily difficult so i'm gonna do this in a jank way
-            //just get the y rotation of the camera attached to the headset and apply that to the player
-
-            float playerCamY = playerCam.transform.rotation.eulerAngles.y; //get hmd rotation from player camera
-
-            float speed = 1f;
-            Vector3 movement = new Vector3(joystickValue.x, 0f, joystickValue.y) * speed; //apply speed to movement vector
-            //print(movement);
-            //print("hmd rotation: " + playerCamY);
-            movement = Quaternion.Euler(0, playerCamY, 0) * movement; // apply y rotation of hmd to movement vector
-            if (movement.magnitude > 0.5f) transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
-        }
-
+        Vector2 leftJoyVal;
+        //Vector2 rightJoyVal;
         
-        if (triggerDown != triggerDownLastState) //trigger event based on input state
-        {
-            //Debug.Log("invoke triggerPress with " + triggerDown);
-            if (!triggerDown)
-                if (triggerLeft != null)
-                    triggerLeft(1.0f);
-                else
-                    triggerPress.Invoke(true);
+        leftWand.TryGetFeatureValue(CommonUsages.secondary2DAxis, out leftJoyVal);
 
-        }
-        triggerDownLastState = triggerDown;
-        
+        if (leftWand.TryGetFeatureValue(CommonUsages.trigger, out leftTriggerVal))
+            if(triggerLeft != null)
+                triggerLeft(leftTriggerVal);
+        if (rightWand.TryGetFeatureValue(CommonUsages.trigger, out rightTriggerVal))
+            if (triggerRight != null)
+                triggerRight(rightTriggerVal);
+
+        //getting the direct headset rotation is unnecessarily difficult so i'm gonna do this in a jank way
+        //just get the y rotation of the camera attached to the headset and apply that to the player
+
+        float playerCamY = playerCam.transform.rotation.eulerAngles.y; //get hmd rotation from player camera
+        float speed = 1f;
+        Vector3 movement = new Vector3(leftJoyVal.x, 0, leftJoyVal.y) * speed;
+        movement = Quaternion.Euler(0, playerCamY, 0) * movement; // apply y rotation of hmd to movement vector
+        if (movement.magnitude > 0.5f) transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
     }
 }

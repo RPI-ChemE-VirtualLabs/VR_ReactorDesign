@@ -2955,7 +2955,7 @@ MonoBehaviour:
   ColdFluidTuner: {fileID: 1473865437}
   ColdFluidInputTempText: {fileID: 400173359}
   ColdFluidInputTempVal: 0
-  ResetCFTButton: {fileID: 0}
+  ResetCFTButton: {fileID: 442578477}
   CFTbuttonpushed: 0
   yellow: {fileID: 0}
   stairprops: {fileID: 0}
@@ -3479,7 +3479,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &425343736
 Canvas:
   m_ObjectHideFlags: 0
@@ -12924,7 +12924,6 @@ MonoBehaviour:
   Percentage: 0
   Character: {fileID: 1593388060}
   stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
-  ResetCFTButton: {fileID: 442578477}
   sensitivity: 0.001
   sensitivityChangeDivide: 20
 --- !u!114 &1396668447
@@ -13377,7 +13376,6 @@ MonoBehaviour:
   Percentage: 0
   Character: {fileID: 0}
   stairprops: {fileID: 0}
-  ResetCFTButton: {fileID: 0}
   sensitivity: 0.001
   sensitivityChangeDivide: 20
 --- !u!65 &1453408229
@@ -13470,7 +13468,7 @@ GameObject:
   - component: {fileID: 1466560086}
   m_Layer: 0
   m_Name: RightController
-  m_TagString: Hand
+  m_TagString: Right Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13577,7 +13575,6 @@ MonoBehaviour:
   Percentage: 0
   Character: {fileID: 266047183}
   stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
-  ResetCFTButton: {fileID: 442578477}
   sensitivity: 0.001
   sensitivityChangeDivide: 20
 --- !u!65 &1473865438
@@ -20659,7 +20656,7 @@ GameObject:
   - component: {fileID: 1979896412}
   m_Layer: 0
   m_Name: LeftController
-  m_TagString: Hand
+  m_TagString: Left Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24247,7 +24244,7 @@ MonoBehaviour:
   CWconsumed: 0
   runtimeprev: 0
   feed_script: {fileID: 945400006}
-  ResetCFFButton: {fileID: 0}
+  ResetCFFButton: {fileID: 1517391751}
   CFFbuttonpushed: 0
   yellow: {fileID: 0}
   stairprops: {fileID: 0}
