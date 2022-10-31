@@ -10,21 +10,28 @@ public class VRButton : MonoBehaviour
     bool lTriggerDown = false;
     bool rTriggerDown = false;
 
+    [Header("Button Aesthetics")]
+    Vector3 restPos;
+    [SerializeField] float pressDepth;
+
     void Awake()
     {
         VR_CharacterController.triggerLeft += OnVRTrigger;
         VR_CharacterController.triggerRight += OnVRTrigger;
+
+        restPos = transform.position;
     }
 
 	public virtual void OnVRTrigger(float pressure)
 	{
         if (hand && pressure != 0)
         {
-            Debug.Log("Hello???????");
-            transform.position = new Vector3(0, .5f, 0);
+            transform.position = restPos - transform.up * pressDepth;
         }
         else
-            transform.position = new Vector3(0, 1.5f, 0);
+		{
+            transform.position = restPos;
+		}
     }
 
     private void OnTriggerEnter(Collider other)

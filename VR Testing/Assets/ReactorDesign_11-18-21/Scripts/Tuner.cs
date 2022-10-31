@@ -40,7 +40,7 @@ public class Tuner : MonoBehaviour
             Transform handT = hand.transform;
             handT.RotateAround(transform.position, Vector3.left, 180.0f);
             float newZ = handT.transform.rotation.eulerAngles.z;
-            Debug.Log(newZ);
+            //Debug.Log(newZ);
 
             //throw out input beyond or below a certain threshold. prevents annoying flipping at extremes
             float threshold = .2f;
@@ -76,7 +76,7 @@ public class Tuner : MonoBehaviour
 
         if (other.gameObject.CompareTag("Right Hand"))
         {
-            print("hand found, attached to dial");
+            //print("hand found, attached to dial");
             //assign gameObject to hand
             hand = other.gameObject;
             Debug.Log(hand.name);
@@ -85,7 +85,7 @@ public class Tuner : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Left Hand"))
         {
-            print("hand found, attached to dial");
+            //print("hand found, attached to dial");
             //assign gameObject to hand
             hand = other.gameObject;
             Debug.Log(hand.name);
@@ -95,7 +95,7 @@ public class Tuner : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        print("something stopped touching the dial");
+        //print("something stopped touching the dial");
         
         if(other.gameObject == hand)
 		{
