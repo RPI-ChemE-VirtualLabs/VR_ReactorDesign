@@ -18,15 +18,18 @@ public class VRButton : MonoBehaviour
 
 	public virtual void OnVRTrigger(float pressure)
 	{
-        if (pressure != 0)
+        if (hand && pressure != 0)
+        {
+            Debug.Log("Hello???????");
             transform.position = new Vector3(0, .5f, 0);
+        }
         else
             transform.position = new Vector3(0, 1.5f, 0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //print("something touched the button");
+        print("something touched the button");
 
         if (other.gameObject.CompareTag("Right Hand"))
         {

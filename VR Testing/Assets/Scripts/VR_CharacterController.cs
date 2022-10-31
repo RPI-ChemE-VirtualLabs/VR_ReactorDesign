@@ -118,11 +118,15 @@ public class VR_CharacterController : MonoBehaviour {
         leftWand.TryGetFeatureValue(CommonUsages.secondary2DAxis, out leftJoyVal);
 
         if (leftWand.TryGetFeatureValue(CommonUsages.trigger, out leftTriggerVal))
-            if(triggerLeft != null)
+        {
+            if (triggerLeft != null)
                 triggerLeft(leftTriggerVal);
+        }
         if (rightWand.TryGetFeatureValue(CommonUsages.trigger, out rightTriggerVal))
+        { 
             if (triggerRight != null)
                 triggerRight(rightTriggerVal);
+        }
 
         //getting the direct headset rotation is unnecessarily difficult so i'm gonna do this in a jank way
         //just get the y rotation of the camera attached to the headset and apply that to the player
