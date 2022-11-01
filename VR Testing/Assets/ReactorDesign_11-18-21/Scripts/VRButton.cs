@@ -9,12 +9,13 @@ public class VRButton : MonoBehaviour
     bool handInRange = false;
     bool lTriggerDown = false;
     bool rTriggerDown = false;
+    public bool buttonActive = false;
 
     [Header("Button Aesthetics")]
     Vector3 restPos;
     [SerializeField] float pressDepth;
 
-    void Awake()
+    public virtual void Awake()
     {
         VR_CharacterController.triggerLeft += OnVRTrigger;
         VR_CharacterController.triggerRight += OnVRTrigger;
@@ -22,16 +23,19 @@ public class VRButton : MonoBehaviour
         restPos = transform.position;
     }
 
+    //override this guy in child classes
 	public virtual void OnVRTrigger(float pressure)
 	{
         if (hand && pressure != 0)
         {
             transform.position = restPos - transform.up * pressDepth;
+            buttonActive = true;
         }
         else
 		{
             transform.position = restPos;
-		}
+            buttonActive = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
