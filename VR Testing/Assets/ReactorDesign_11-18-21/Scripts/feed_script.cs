@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class feed_script : MonoBehaviour
 {
 
@@ -67,9 +65,6 @@ public class feed_script : MonoBehaviour
     public float[] runtimearray = new float[1000];
     public float[] Conc_array = new float[1000];
 
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -85,7 +80,6 @@ public class feed_script : MonoBehaviour
     }
 
     // Update is called once per frame
-
     void Update()
     {
         pHvalue = pHsettings.GetComponent<pHsettings>().pHvalue;
@@ -105,39 +99,28 @@ public class feed_script : MonoBehaviour
             multiplier = 1.0f;
         }
 
-            if (UVbuttonpushed == true)
+        if (UVbuttonpushed == true)
         {
-
             if (pHvalue == 7)
             {
-
                 // k = (0.02612f)*multiplier*Mathf.Exp(-1f*Ea_R/rxntemp); // min^-1
                 k = (2.6115e18f)*multiplier*Mathf.Exp(-1f*Ea_R/rxntemp); // min^-1
             }
             if (pHvalue == 10)
             {
-
                 //k = (0.05118f)*multiplier;
                 k = (5.117e18f) * multiplier * Mathf.Exp(-1f * Ea_R / rxntemp); // min^-1
             }
             if (pHvalue == 12)
             {
-
                 //k = (0.05588f*multiplier);
                 k = (5.5869e18f) * multiplier * Mathf.Exp(-1f * Ea_R / rxntemp); // min^-1
-
             }
-
         }
-
         else
         {
             k = 0.0f;
         }
-
-
-
-
 
         if (feedbuttonpushed == true)
         {
@@ -149,39 +132,28 @@ public class feed_script : MonoBehaviour
             F0 = 0f;
         }   
 
+        // ***** Timekeeping operations
+        frameselapsed = frameselapsed + 1.0f;
+        timelapsed_prev = timelapsed;
+        timelapsed += Time.deltaTime;
+        lastframetime = timelapsed - timelapsed_prev;
+        framerate = frameselapsed / timelapsed;
+        frameselapsed = frameselapsed + 1.0f;
+        timelapsed += Time.deltaTime;
+        framerate = frameselapsed / timelapsed;
 
+        // Determine if UV source is turned on
+        UVbuttonpushed = UV_source.GetComponent<UV_source>().UVbuttonpushed; // retrieve "UVbuttonpushed" value from the other GameObject
 
-
-            // ***** Timekeeping operations
-
-            frameselapsed = frameselapsed + 1.0f;
-            timelapsed_prev = timelapsed;
-            timelapsed += Time.deltaTime;
-            lastframetime = timelapsed - timelapsed_prev;
-            framerate = frameselapsed / timelapsed;
-            frameselapsed = frameselapsed + 1.0f;
-            timelapsed += Time.deltaTime;
-            framerate = frameselapsed / timelapsed;
-
-            // Determine if UV source is turned on
-
-            UVbuttonpushed = UV_source.GetComponent<UV_source>().UVbuttonpushed; // retrieve "UVbuttonpushed" value from the other GameObject
-
-
-
-
-
-            // Determine if feed flow rate setpoint is being changed
-
-
-            if (Input.GetMouseButtonDown(0))
+        // Determine if feed flow rate setpoint is being changed
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit clickinfo2 = new RaycastHit();
+            Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray2, out clickinfo2))
             {
-                RaycastHit clickinfo2 = new RaycastHit();
-                Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray2, out clickinfo2))
+                if (clickinfo2.collider != null)
                 {
-                    if (clickinfo2.collider != null)
-                    {
                         // ***********************************************************************
                         if (clickinfo2.transform.gameObject.name == "feedupbutton")
 
@@ -246,14 +218,9 @@ public class feed_script : MonoBehaviour
 
 
                 }
-            }
+           }
 
-
-
-
-
-
-            if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit clickinfo = new RaycastHit();
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -284,41 +251,21 @@ public class feed_script : MonoBehaviour
                 }
             }
 
-            feedbuttoncolor = feedbutton.gameObject.GetComponent<Renderer>().material.name; // gets the name of the material from the feedbutton
+        feedbuttoncolor = feedbutton.gameObject.GetComponent<Renderer>().material.name; // gets the name of the material from the feedbutton
 
-            if (feedbuttonpushed == true)
-            {
-                feedon = true;
+        feedbuttonpushed = feedon;
 
-            }
+        if (feedbuttonpushed == true)
+            counter++;
 
-            else
-            {
-                feedon = false;
-            }
-
-
-            if (feedbuttonpushed == true)
-            {
-                counter = counter + 1;
-
-            }
-
-
-            if (counter > 0)
-            {
-                runtime += Time.deltaTime;
-
-
-            }
-
+        if (counter > 0)
+        {
+            runtime += Time.deltaTime;
+        }
 
             // Determine CA and perform mass balances
-
             if (feedbuttonpushed == true)
             {
-
-
                 CAin = 2f;
 
                 if (UVbuttonpushed == true)
@@ -362,7 +309,9 @@ public class feed_script : MonoBehaviour
         }
     }
 
+/*
 internal class Impeller_script
 {
     internal bool impellerbuttonpushed;
 }
+*/
