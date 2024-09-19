@@ -13,9 +13,9 @@ public class VRFlowDown : VRButton
         if (feedManager)
             feedS = feedManager.GetComponent<feed_script>();
     }
-    public override void OnVRTrigger(float pressure)
+    public override void OnVRTriggerDown(float pressure)
     {
-        base.OnVRTrigger(pressure);
-        feedS.feeddownbuttonpushed = buttonActive;
+        base.OnVRTriggerDown(pressure);
+        feedS.feeddownbuttonpushed = Active;
     }
 }

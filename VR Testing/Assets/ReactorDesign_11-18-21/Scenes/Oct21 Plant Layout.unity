@@ -837,7 +837,7 @@ LightingSettings:
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
   serializedVersion: 3
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 1
   m_RealtimeEnvironmentLighting: 1
@@ -1907,7 +1907,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135f6daa9b2df4342bf443f8d461c0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonActive: 0
   pressDepth: 0
   feedManager: {fileID: 1656501993}
 --- !u!1 &251395670 stripped
@@ -1973,7 +1972,7 @@ GameObject:
   - component: {fileID: 266047186}
   - component: {fileID: 266047187}
   m_Layer: 0
-  m_Name: XRRig
+  m_Name: User Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2038,7 +2037,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266047183}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f86bec919c77b974e871175de03e9769, type: 3}
   m_Name: 
@@ -2857,9 +2856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcec8cf72c3db804e9af364c2505bdf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonActive: 0
   pressDepth: 0
-  feedManager: {fileID: 0}
+  feedManager: {fileID: 1656501993}
 --- !u!1001 &365106365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11346,6 +11344,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mixer Button
       objectReference: {fileID: 0}
+    - target: {fileID: 6739971798264528060, guid: 381925afe70e1ec4fb862eee66226751,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6851298524279853240, guid: 381925afe70e1ec4fb862eee66226751,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11372,7 +11375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3542b515dfa03419cd704d5fad6f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonActive: 0
   pressDepth: 0
   feedManager: {fileID: 1656501993}
 --- !u!1 &1079008036
@@ -13109,7 +13111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb4688969d59524dae64ec434721095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonActive: 0
   pressDepth: 0
   feedManager: {fileID: 1656501993}
 --- !u!1001 &1338122325
@@ -22632,7 +22633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08de1730dfdc6634caae09c6f8c6555d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonActive: 0
   pressDepth: 0
   feedManager: {fileID: 1656501993}
 --- !u!4 &2069973005 stripped

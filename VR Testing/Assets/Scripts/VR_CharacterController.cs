@@ -23,8 +23,8 @@ public class VR_CharacterController : MonoBehaviour {
 public class TriggerEvent : UnityEvent<bool> { }
 
 public class VR_CharacterController : MonoBehaviour {
-    public TriggerEvent triggerPress;
-    public TriggerEvent triggerRelease;
+    //public TriggerEvent triggerPress;
+    //public TriggerEvent triggerRelease;
 
     private bool lastButtonState = false;
     private List<InputDevice> inputDevices;
@@ -34,19 +34,24 @@ public class VR_CharacterController : MonoBehaviour {
     //MotionControllerStateCache moConCache;
 
     bool triggerDownLastState = false;
+    // TODO: Change case of triggerAction
     [HideInInspector] public delegate void triggerAction(float pressure);
-    [HideInInspector] public static event triggerAction triggerLeft;
-    [HideInInspector] public static event triggerAction triggerRight;
+    [HideInInspector] public static event triggerAction triggerLeftDown;
+    [HideInInspector] public static event triggerAction triggerRightDown;
+    [HideInInspector] public static event triggerAction triggerLeftUp;
+    [HideInInspector] public static event triggerAction triggerRightUp;
 
     private InputDevice leftWand;
     private InputDevice rightWand;
     //private InputDevice hmd;
 
     private void Awake() {
+        // Register events.
+        /*
         if (triggerPress == null) {
             triggerPress = new TriggerEvent();
             triggerRelease = new TriggerEvent();
-        }
+        }*/
 
         inputDevices = new List<InputDevice>();
 
@@ -56,6 +61,7 @@ public class VR_CharacterController : MonoBehaviour {
     }
 
     void OnEnable() {
+        // Look for connected devices and register them.
         List<InputDevice> allDevices = new List<InputDevice>();
         InputDevices.GetDevices(allDevices);
         foreach (InputDevice device in allDevices) {
@@ -67,15 +73,16 @@ public class VR_CharacterController : MonoBehaviour {
     }
 
     private void OnDisable() {
+        // Unregister inputs that need to be disconnected.
         InputDevices.deviceConnected -= InputDevices_deviceConnected;
         InputDevices.deviceDisconnected -= InputDevices_deviceDisconnected;
         inputDevices.Clear();
     }
 
+    // Registers devices based on function (e.g. distinguishing HMD vs Wand)
     private void InputDevices_deviceConnected(InputDevice device) {
-        print("Device connected! " + device.name);
+        Debug.Log("Device connected! " + device.name);
 
-        //look at characteristic bitmasks to see what this controller is for
         inputDevices.Add(device);
         if((device.characteristics & InputDeviceCharacteristics.HeldInHand) == InputDeviceCharacteristics.HeldInHand)
 		{
@@ -115,26 +122,35 @@ public class VR_CharacterController : MonoBehaviour {
         Vector2 leftJoyVal;
         //Vector2 rightJoyVal;
         
+        // Get state of left stick for movement.
+        // TODO: Move character movement to another script and only handle input here.
         leftWand.TryGetFeatureValue(CommonUsages.secondary2DAxis, out leftJoyVal);
 
         if (leftWand.TryGetFeatureValue(CommonUsages.trigger, out leftTriggerVal))
         {
-            if (triggerLeft != null)
-                triggerLeft(leftTriggerVal);
+            if (triggerLeftDown != null && leftTriggerVal > 0)
+                triggerLeftDown(leftTriggerVal);
+            else if(triggerLeftUp != null)
+                triggerLeftUp(leftTriggerVal);
         }
         if (rightWand.TryGetFeatureValue(CommonUsages.trigger, out rightTriggerVal))
         { 
-            if (triggerRight != null)
-                triggerRight(rightTriggerVal);
+            if (triggerRightDown != null && rightTriggerVal > 0)
+                triggerRightDown(rightTriggerVal);
+            else if(triggerRightUp != null)
+                triggerRightUp(leftTriggerVal);
         }
 
         //getting the direct headset rotation is unnecessarily difficult so i'm gonna do this in a jank way
         //just get the y rotation of the camera attached to the headset and apply that to the player
+        //Debug.Log(leftJoyVal);
 
         float playerCamY = playerCam.transform.rotation.eulerAngles.y; //get hmd rotation from player camera
         float speed = 1f;
         Vector3 movement = new Vector3(leftJoyVal.x, 0, leftJoyVal.y) * speed;
         movement = Quaternion.Euler(0, playerCamY, 0) * movement; // apply y rotation of hmd to movement vector
-        if (movement.magnitude > 0.5f) transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
+        //Debug.Log(movement);
+        if (movement.magnitude > 0.5f) 
+            transform.position += movement * Time.deltaTime; //apply movement to character (w/ deadzone) 
     }
 }

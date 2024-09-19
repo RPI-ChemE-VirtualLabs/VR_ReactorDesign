@@ -11,6 +11,7 @@ public class impeller_script : MonoBehaviour
     public Material on;
     public string buttoncolor;
     public bool impellerbuttonpushed = false;
+    [SerializeField] private float shaftRotateSpeed = 5.0f;
     public AudioSource impellershaft;
     public AudioClip impellersound;
 
@@ -66,16 +67,14 @@ public class impeller_script : MonoBehaviour
         if (impellerbuttonpushed == true)
         {
             soundvol = 0.04f;
-            transform.Rotate(new Vector3(0, 45, 0) * Time.deltaTime);
+            transform.parent.transform.Rotate(new Vector3(0, 45, 0) * Time.deltaTime * shaftRotateSpeed);
 
             //impellershaft.PlayOneShot(impellersound, 1f);
             AudioSource.PlayClipAtPoint(impellersound, new Vector3(32.1f, 2.94f, 28.1f), soundvol);
         }
-
         else
         {
-            transform.Rotate(new Vector3(0, 0, 0) * Time.deltaTime);
-            soundvol = 0.0f;
+
             impellershaft.Stop();
 
             //impellersound.Pause();

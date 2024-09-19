@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class VRButton : MonoBehaviour
 {
+    // TODO: Abstract this class further.
     GameObject hand = null;
-    bool whichHand = false; // false = left, true = right
+    enum Hand {NONE, LEFT, RIGHT };
+    Hand currentHand = Hand.NONE; 
     bool handInRange = false;
-    bool lTriggerDown = false;
-    bool rTriggerDown = false;
-    public bool buttonActive = false;
+    bool active = false;
+    bool buttonDown = false;
+    public bool Active {
+        get { return active; } 
+        protected set { active = value; } 
+    }
 
     [Header("Button Aesthetics")]
     Vector3 restPos;
@@ -17,55 +22,71 @@ public class VRButton : MonoBehaviour
 
     public virtual void Awake()
     {
-        VR_CharacterController.triggerLeft += OnVRTrigger;
-        VR_CharacterController.triggerRight += OnVRTrigger;
+        // Register this object with the character controller.
+        VR_CharacterController.triggerLeftDown += OnVRTriggerDown;
+        VR_CharacterController.triggerRightDown += OnVRTriggerDown;
+        VR_CharacterController.triggerLeftUp += OnVRTriggerUp;
+        VR_CharacterController.triggerRightUp += OnVRTriggerUp;
 
         restPos = transform.position;
     }
 
-    //override this guy in child classes
-	public virtual void OnVRTrigger(float pressure)
+    // Fire when a controller's trigger is pressed down.
+    /* Parameters:
+     *  pressure: float between 0 (not pressed at all) and 1 (completely pressed)
+    */
+	public virtual void OnVRTriggerDown(float pressure)
 	{
-        if (hand && pressure != 0)
+        // If this object is being touched and the button isn't already down...
+        if (hand && !buttonDown)
         {
+            // Push the object down and mark it as active.
             transform.position = restPos - transform.up * pressDepth;
-            buttonActive = true;
-        }
-        else
-		{
-            transform.position = restPos;
-            buttonActive = false;
+            Active = true;
+            Debug.Log("Changed.");
+            buttonDown = true;
         }
     }
 
+    // Fire when a controller's trigger is being released.
+	public virtual void OnVRTriggerUp(float pressure)
+	{
+        // Reset position and mark as inactive.
+        if (buttonDown)
+        {
+            transform.position = restPos;
+            Active = false;
+            buttonDown = false;
+        }
+        // Debug.Log("Trigger released.");
+	}
+
     private void OnTriggerEnter(Collider other)
     {
-        print("something touched the button");
-
+        // Check if the object is a hand (and which hand it is),
+        // and get a reference to it.
+        // TODO: This doesn't need to be an if/else.
         if (other.gameObject.CompareTag("Right Hand"))
         {
             print("hand found, attached to button");
-            //assign gameObject to hand
             hand = other.gameObject;
             Debug.Log(hand.name);
 
-            whichHand = true;
+            currentHand = Hand.RIGHT;
         }
         else if (other.gameObject.CompareTag("Left Hand"))
         {
             print("hand found, attached to button");
-            //assign gameObject to hand
             hand = other.gameObject;
             Debug.Log(hand.name);
 
-            whichHand = false;
+            currentHand = Hand.LEFT;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        print("something stopped touching the button");
-
+        // When the hand leaves the collider, clear the reference.
         if (other.gameObject == hand)
         {
             hand = null;

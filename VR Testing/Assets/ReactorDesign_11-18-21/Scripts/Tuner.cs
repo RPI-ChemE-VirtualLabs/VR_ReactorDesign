@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Tuner : MonoBehaviour
 {
+    // TODO: Refactor this to derive from VRButton.cs.
     public float Percentage = 0f;
 
     public GameObject Character;
     public Material stairprops;
-    //public GameObject ResetCFTButton; the computer is yelling at me too much :(
-    //i'm guessing this has to be manually assigned but. in the mean time i would like to Use The Debug Logs
 
     [SerializeField]
     float sensitivity = .001f;
@@ -25,8 +24,8 @@ public class Tuner : MonoBehaviour
 
     void Awake()
 	{
-        VR_CharacterController.triggerLeft += OnLeftTrigger;
-        VR_CharacterController.triggerRight += OnRightTrigger;
+        VR_CharacterController.triggerLeftDown += OnLeftTrigger;
+        VR_CharacterController.triggerRightDown += OnRightTrigger;
 	}
 
 	// Update is called once per frame
