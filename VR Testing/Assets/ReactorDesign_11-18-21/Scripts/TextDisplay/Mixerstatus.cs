@@ -9,13 +9,13 @@ public class Mixerstatus : MonoBehaviour
     public GameObject UVbutton;
     public GameObject feedbutton;
     //public GameObject findF0;
-    public GameObject feed_script; // new Sept14
+    [SerializeField] GameObject feed_script;
+    private feed_script fs;
 
     public Text statustext;
     public Text UVstatustext;
     public Text feedstatustext;
 
-    public bool impellerbuttonpushed;
     public bool UVbuttonpushed;
     public bool feedbuttonpushed;
 
@@ -30,36 +30,24 @@ public class Mixerstatus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //findF0 = GameObject.FindWithTag("feed_script"); // find the GameObject with the script "feed_script" attached to it
+        if(!feed_script.TryGetComponent<feed_script>(out fs))
+		{
+            Debug.LogError("Mixer Status couldn't find the feed script.");
+		}
     }
 
     // Update is called once per frame
     void Update()
-
-        // Fetch the value of F0 from feed_script
-
     {
-
-    //    F0value = findF0.GetComponent<feed_script>().F0; // retrieve "F0" value from the other script
-
-
-        mixerbuttonmaterial = impellerbutton.gameObject.GetComponent<Renderer>().material.name;
-        UVbuttonmaterial = UVbutton.gameObject.GetComponent<Renderer>().material.name;
-        feedbuttonmaterial = feedbutton.gameObject.GetComponent<Renderer>().material.name;
-
-        if (mixerbuttonmaterial == "stop button (Instance)")
-        {
-            impellerbuttonpushed = false;
-            
-            statustext.GetComponent<Text>().text = "Mixer status: Off";
-        }
-
-        else
-        {
-            impellerbuttonpushed = true;
-            
-            statustext.GetComponent<Text>().text = "Mixer status: On";
-        }
+        /* Ternary statements:
+         *   fs.Impellerbuttonpushed ? "On" : "Off"
+         * is essentially:
+         * if(fs.Impellerbuttonpushed)
+         *  return "On";
+         * else
+         *  return "Off";
+         */
+        statustext.text = "Mixer status: " + (fs.Impellerbuttonpushed ? "On" : "Off");
 
         if (UVbuttonmaterial == "stop button (Instance)")
         {
@@ -93,10 +81,5 @@ public class Mixerstatus : MonoBehaviour
 
             feedstatustext.GetComponent<Text>().text = "Feed flow (m3/min):" + System.Math.Round(value2, 4); // modified Sept14
         }
-
-
-
-
-
     }
 }

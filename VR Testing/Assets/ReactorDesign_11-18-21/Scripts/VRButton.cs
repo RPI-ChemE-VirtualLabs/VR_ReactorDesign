@@ -5,7 +5,7 @@ using UnityEngine;
 public class VRButton : MonoBehaviour
 {
     // TODO: Abstract this class further.
-    GameObject hand = null;
+    protected GameObject hand = null;
     enum Hand {NONE, LEFT, RIGHT };
     Hand currentHand = Hand.NONE; 
     bool handInRange = false;
@@ -38,7 +38,7 @@ public class VRButton : MonoBehaviour
 	public virtual void OnVRTriggerDown(float pressure)
 	{
         // If this object is being touched and the button isn't already down...
-        if (hand && !buttonDown)
+        if (hand != null && !buttonDown)
         {
             // Push the object down and mark it as active.
             transform.position = restPos - transform.up * pressDepth;

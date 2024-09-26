@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class impeller_script : MonoBehaviour
 {
-
     public GameObject impellerbutton;
     public Material off;
     public Material on;
@@ -22,13 +21,11 @@ public class impeller_script : MonoBehaviour
     {
         impellershaft = GetComponent<AudioSource>();
         // impellersound.Pause();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit clickinfo = new RaycastHit();
@@ -74,13 +71,8 @@ public class impeller_script : MonoBehaviour
         }
         else
         {
-
             impellershaft.Stop();
-
             //impellersound.Pause();
         }
-
-
-
     }
 }

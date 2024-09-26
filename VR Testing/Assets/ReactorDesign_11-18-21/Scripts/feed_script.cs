@@ -10,7 +10,7 @@ public class feed_script : MonoBehaviour
     public GameObject feedupbutton;
     public GameObject feeddownbutton;
     public GameObject pHsettings;
-    public GameObject impellerbutton;
+    [SerializeField] GameObject impellerbutton;
     public GameObject HotFluidOutTemp;
     // public GameObject Impeller_script;
 
@@ -45,6 +45,8 @@ public class feed_script : MonoBehaviour
     private float timelapsed_prev;
     public float framerate;
     private float lastframetime;
+
+    // Math variables.
     public float CA = 0f;
     public float VR = 10f; // reactor volume, m^3
     public float nA = 0f;
@@ -57,9 +59,10 @@ public class feed_script : MonoBehaviour
     public float Ea_R = 1.35e4f;
     public float rxntemp;
 
+//  # times Record button pushed. 0 = none; 1 = recording; 2 = stop recording, reset counter to 0
     public int counter = 0;
     public int counter2 = 0;
-    public int rcounter = 0;  //  # times Record button pushed. 0 = none; 1 = recording; 2 = stop recording, reset counter to 0
+    public int rcounter = 0;  
     public int framecounter = 0;
 
     public float[] runtimearray = new float[1000];
@@ -87,6 +90,7 @@ public class feed_script : MonoBehaviour
         mixing = impellerbutton.gameObject.GetComponent<Renderer>().material.name; // gets the name of the material from the blue atom contacted
         rxntemp = HotFluidOutTemp.gameObject.GetComponent<HotFluidOutTemp>().Thout;
 
+        /*
         if (mixing == "stop button (Instance)")
         {
 
@@ -98,7 +102,7 @@ public class feed_script : MonoBehaviour
         {
             Impellerbuttonpushed = true;
             multiplier = 1.0f;
-        }
+        }*/
 
         if (UVbuttonpushed == true)
         {

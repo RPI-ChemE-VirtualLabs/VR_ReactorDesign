@@ -120,11 +120,12 @@ public class VR_CharacterController : MonoBehaviour {
         float leftTriggerVal;
         float rightTriggerVal;
         Vector2 leftJoyVal;
-        //Vector2 rightJoyVal;
+        Vector2 rightJoyVal;
         
         // Get state of left stick for movement.
         // TODO: Move character movement to another script and only handle input here.
         leftWand.TryGetFeatureValue(CommonUsages.secondary2DAxis, out leftJoyVal);
+        rightWand.TryGetFeatureValue(CommonUsages.secondary2DAxis, out rightJoyVal);
 
         if (leftWand.TryGetFeatureValue(CommonUsages.trigger, out leftTriggerVal))
         {
@@ -147,7 +148,9 @@ public class VR_CharacterController : MonoBehaviour {
 
         float playerCamY = playerCam.transform.rotation.eulerAngles.y; //get hmd rotation from player camera
         float speed = 1f;
-        Vector3 movement = new Vector3(leftJoyVal.x, 0, leftJoyVal.y) * speed;
+        Vector3 left_movement = new Vector3(leftJoyVal.x, 0, leftJoyVal.y) * speed;
+        Vector3 right_movement = new Vector3(rightJoyVal.x, 0, rightJoyVal.y) * speed;
+        Vector3 movement = Vector3.Max(left_movement, right_movement);
         movement = Quaternion.Euler(0, playerCamY, 0) * movement; // apply y rotation of hmd to movement vector
         //Debug.Log(movement);
         if (movement.magnitude > 0.5f) 

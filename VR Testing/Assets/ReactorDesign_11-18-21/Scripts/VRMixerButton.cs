@@ -8,6 +8,16 @@ public class VRMixerButton : VRButton
     feed_script feedS;
     impeller_script impel;
 
+    /*
+    enum ButtonState { 
+        PRESSED, // The button was *just* pressed.
+        HELD,   // The button is being held down, but isn't being pressed again.
+        RELEASED // The button isn't being held.
+    } */
+
+    // BUG: There is currently no logic for handling when the user takes their hand
+    // away from the button.
+
     public override void Awake()
     {
         base.Awake();
@@ -21,13 +31,20 @@ public class VRMixerButton : VRButton
     public override void OnVRTriggerDown(float pressure)
     {
         base.OnVRTriggerDown(pressure);
-        feedS.Impellerbuttonpushed = true;
-        impel.impellerbuttonpushed = true;
+        if (hand != null)
+        {
+            feedS.Impellerbuttonpushed = true;
+            impel.impellerbuttonpushed = true;
+        }
     }
 	public override void OnVRTriggerUp(float pressure)
 	{
 		base.OnVRTriggerUp(pressure);
-        feedS.Impellerbuttonpushed = false;
-        impel.impellerbuttonpushed = false;
+        // Check if the button's hand != null.
+        if (hand != null)
+        {
+            feedS.Impellerbuttonpushed = false;
+            impel.impellerbuttonpushed = false;
+        }
 	}
 }
