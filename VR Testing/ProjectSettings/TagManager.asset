@@ -8,6 +8,7 @@ TagManager:
   - Hand
   - Right Hand
   - Left Hand
+  - VR Object
   layers:
   - Default
   - TransparentFX

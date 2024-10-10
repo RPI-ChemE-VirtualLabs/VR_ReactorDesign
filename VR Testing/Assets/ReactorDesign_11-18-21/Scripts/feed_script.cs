@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class feed_script : MonoBehaviour
 {
-
     public GameObject feedbutton;
     public GameObject UV_source;
     public GameObject feedupbutton;
@@ -13,6 +13,8 @@ public class feed_script : MonoBehaviour
     [SerializeField] GameObject impellerbutton;
     public GameObject HotFluidOutTemp;
     // public GameObject Impeller_script;
+    // Reference to text box which displays the impeller's status.
+    public Text impellerDisplay;
 
     public bool feedbuttonpushed = false;
     public bool feedon;
@@ -20,7 +22,15 @@ public class feed_script : MonoBehaviour
     public bool feedupbuttonpushed = false;
     public bool feeddownbuttonpushed = false;
     public bool UVbuttonpushed = false;
-    public bool Impellerbuttonpushed = false;
+    bool m_impellerOn = false;
+    public bool impellerOn 
+    {
+        get { return m_impellerOn;  }
+        set {
+            m_impellerOn = value;
+            //impellerDisplay.text = m_impellerOn ? "On" : "Off";
+        }
+    }
     public Material off;
     public Material on;
     public string mixing;
@@ -131,13 +141,12 @@ public class feed_script : MonoBehaviour
         {
             F0 = F0set;
         }
-
         else
         {
             F0 = 0f;
         }   
 
-        // ***** Timekeeping operations
+        // ***** Timekeeping operationsDown
         frameselapsed = frameselapsed + 1.0f;
         timelapsed_prev = timelapsed;
         timelapsed += Time.deltaTime;

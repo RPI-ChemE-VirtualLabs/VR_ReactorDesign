@@ -150,7 +150,7 @@ public class VR_CharacterController : MonoBehaviour {
         float speed = 1f;
         Vector3 left_movement = new Vector3(leftJoyVal.x, 0, leftJoyVal.y) * speed;
         Vector3 right_movement = new Vector3(rightJoyVal.x, 0, rightJoyVal.y) * speed;
-        Vector3 movement = Vector3.Max(left_movement, right_movement);
+        Vector3 movement = left_movement.magnitude > right_movement.magnitude ? left_movement : right_movement;
         movement = Quaternion.Euler(0, playerCamY, 0) * movement; // apply y rotation of hmd to movement vector
         //Debug.Log(movement);
         if (movement.magnitude > 0.5f) 

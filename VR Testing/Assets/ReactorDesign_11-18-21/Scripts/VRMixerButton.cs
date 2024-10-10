@@ -31,9 +31,10 @@ public class VRMixerButton : VRButton
     public override void OnVRTriggerDown(float pressure)
     {
         base.OnVRTriggerDown(pressure);
-        if (hand != null)
+        // TODO: Move hand check to base class and check usingDebug there.
+        if (hand != null || VRControllerDebug.usingDebug)
         {
-            feedS.Impellerbuttonpushed = true;
+            feedS.impellerOn = true;
             impel.impellerbuttonpushed = true;
         }
     }
@@ -41,9 +42,9 @@ public class VRMixerButton : VRButton
 	{
 		base.OnVRTriggerUp(pressure);
         // Check if the button's hand != null.
-        if (hand != null)
+        if (hand != null || VRControllerDebug.usingDebug)
         {
-            feedS.Impellerbuttonpushed = false;
+            feedS.impellerOn = false;
             impel.impellerbuttonpushed = false;
         }
 	}

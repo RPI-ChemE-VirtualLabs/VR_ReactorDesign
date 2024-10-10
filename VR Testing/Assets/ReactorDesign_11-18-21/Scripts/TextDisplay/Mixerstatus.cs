@@ -27,13 +27,11 @@ public class Mixerstatus : MonoBehaviour
 
     public float value2; // new Sept14
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
         if(!feed_script.TryGetComponent<feed_script>(out fs))
-		{
             Debug.LogError("Mixer Status couldn't find the feed script.");
-		}
     }
 
     // Update is called once per frame
@@ -47,7 +45,7 @@ public class Mixerstatus : MonoBehaviour
          * else
          *  return "Off";
          */
-        statustext.text = "Mixer status: " + (fs.Impellerbuttonpushed ? "On" : "Off");
+        statustext.text = "Mixer status: " + (fs.impellerOn ? "On" : "Off");
 
         if (UVbuttonmaterial == "stop button (Instance)")
         {

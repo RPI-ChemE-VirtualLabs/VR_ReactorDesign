@@ -1887,7 +1887,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 251f6ffc22f326148bd95aaa5392ba0c, type: 2}
     m_RemovedComponents:
-    - {fileID: 2631808824398944470, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
 --- !u!1 &241762753 stripped
 GameObject:
@@ -1977,7 +1977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &266047184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2024,12 +2024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef1e448ec0ab5b4f9d5321b55251394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerPress:
-    m_PersistentCalls:
-      m_Calls: []
-  triggerRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &266047187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2836,7 +2830,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 251f6ffc22f326148bd95aaa5392ba0c, type: 2}
     m_RemovedComponents:
-    - {fileID: 2631808824398944470, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
 --- !u!1 &356025577 stripped
 GameObject:
@@ -5910,7 +5904,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709460902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ad47699e83458047a25354aafd1a2dd, type: 3}
   m_Name: 
@@ -5922,7 +5916,6 @@ MonoBehaviour:
   statustext: {fileID: 1123814654}
   UVstatustext: {fileID: 709460905}
   feedstatustext: {fileID: 1019902527}
-  impellerbuttonpushed: 0
   UVbuttonpushed: 0
   feedbuttonpushed: 0
   codecheck: 0
@@ -7076,6 +7069,7 @@ MonoBehaviour:
   on: {fileID: 2100000, guid: b412d48a07462b1439fa05cfbfbf32bd, type: 2}
   buttoncolor: 
   impellerbuttonpushed: 0
+  shaftRotateSpeed: 5
   impellershaft: {fileID: 2069973006}
   impellersound: {fileID: 8300000, guid: e9dc3e466edd7d4439f243501dc352ef, type: 3}
 --- !u!82 &862798594
@@ -8070,13 +8064,13 @@ MonoBehaviour:
   pHsettings: {fileID: 902396148}
   impellerbutton: {fileID: 776998824}
   HotFluidOutTemp: {fileID: 2110281466}
+  impellerDisplay: {fileID: 0}
   feedbuttonpushed: 0
   feedon: 0
   running_CA: 0
   feedupbuttonpushed: 0
   feeddownbuttonpushed: 0
   UVbuttonpushed: 0
-  Impellerbuttonpushed: 0
   off: {fileID: 2100000, guid: eb60def5647e50243b8377630e355e84, type: 2}
   on: {fileID: 2100000, guid: b412d48a07462b1439fa05cfbfbf32bd, type: 2}
   mixing: 
@@ -10724,7 +10718,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019902524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ad47699e83458047a25354aafd1a2dd, type: 3}
   m_Name: 
@@ -10736,7 +10730,6 @@ MonoBehaviour:
   statustext: {fileID: 1123814654}
   UVstatustext: {fileID: 709460905}
   feedstatustext: {fileID: 1019902527}
-  impellerbuttonpushed: 0
   UVbuttonpushed: 0
   feedbuttonpushed: 0
   codecheck: 0
@@ -11058,7 +11051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_RootOrder
@@ -11066,11 +11059,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.74
+      value: -1.31
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.07
+      value: 3.978
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11111,6 +11104,14 @@ PrefabInstance:
     - target: {fileID: 8200000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_Volume
       value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_JumpSpeed
@@ -11354,8 +11355,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 251f6ffc22f326148bd95aaa5392ba0c, type: 2}
-    m_RemovedComponents:
-    - {fileID: 2631808824398944470, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
 --- !u!1 &1076900551 stripped
 GameObject:
@@ -11376,7 +11376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressDepth: 0
-  feedManager: {fileID: 1656501993}
+  feedManager: {fileID: 945400006}
 --- !u!1 &1079008036
 GameObject:
   m_ObjectHideFlags: 0
@@ -11594,7 +11594,6 @@ MonoBehaviour:
   statustext: {fileID: 1123814654}
   UVstatustext: {fileID: 709460905}
   feedstatustext: {fileID: 1019902527}
-  impellerbuttonpushed: 0
   UVbuttonpushed: 0
   feedbuttonpushed: 0
   codecheck: 0
@@ -13091,7 +13090,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: f7ff6b052b9d8e149ba3f7a192485f8f, type: 2}
     m_RemovedComponents:
-    - {fileID: 2631808824398944470, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
 --- !u!1 &1332833061 stripped
 GameObject:
@@ -16173,7 +16172,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1065284968}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1593388066
+--- !u!114 &1593388061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16181,6 +16180,51 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593388060}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c6268c1408fc94d96b8c7a49010bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handPresenceIndicator: {r: 0, g: 0, b: 0, a: 0}
+  speed: 1
+  sensitivity: 2.5
+--- !u!114 &1593388062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593388060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: 0}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1593388066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593388060}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9b62d2914e7d1646b0dd5e24642c3bc, type: 3}
   m_Name: 
@@ -16454,7 +16498,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1631532244
 Canvas:
   m_ObjectHideFlags: 0
@@ -16630,7 +16674,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656501993}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 192fbae942fbd7a479aaddb545e09301, type: 3}
   m_Name: 
@@ -16642,13 +16686,13 @@ MonoBehaviour:
   pHsettings: {fileID: 902396148}
   impellerbutton: {fileID: 776998824}
   HotFluidOutTemp: {fileID: 2110281466}
+  impellerDisplay: {fileID: 0}
   feedbuttonpushed: 0
   feedon: 0
   running_CA: 0
   feedupbuttonpushed: 0
   feeddownbuttonpushed: 0
   UVbuttonpushed: 0
-  Impellerbuttonpushed: 0
   off: {fileID: 2100000, guid: eb60def5647e50243b8377630e355e84, type: 2}
   on: {fileID: 2100000, guid: b412d48a07462b1439fa05cfbfbf32bd, type: 2}
   mixing: 
@@ -20355,7 +20399,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1796690535
 Canvas:
   m_ObjectHideFlags: 0
@@ -20825,6 +20869,7 @@ MonoBehaviour:
   on: {fileID: 2100000, guid: b412d48a07462b1439fa05cfbfbf32bd, type: 2}
   buttoncolor: 
   impellerbuttonpushed: 0
+  shaftRotateSpeed: 5
   impellershaft: {fileID: 2069973006}
   impellersound: {fileID: 8300000, guid: e9dc3e466edd7d4439f243501dc352ef, type: 3}
 --- !u!82 &1931945455
@@ -22613,7 +22658,7 @@ PrefabInstance:
       value: Feed Button
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 2631808824398944470, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 381925afe70e1ec4fb862eee66226751, type: 3}
 --- !u!1 &2060467866 stripped
 GameObject:

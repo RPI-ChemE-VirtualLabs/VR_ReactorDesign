@@ -17,8 +17,8 @@ public class VRButton : MonoBehaviour
     }
 
     [Header("Button Aesthetics")]
-    Vector3 restPos;
-    [SerializeField] float pressDepth;
+    protected Vector3 restPos;
+    [SerializeField] protected float pressDepth;
 
     public virtual void Awake()
     {
@@ -29,6 +29,12 @@ public class VRButton : MonoBehaviour
         VR_CharacterController.triggerRightUp += OnVRTriggerUp;
 
         restPos = transform.position;
+
+        // Give this object a VR object tag if it doesn't have it already.
+        if (gameObject.CompareTag("Untagged")) {
+            Debug.LogWarning("Untagged object was given the \"VR Object\" tag.", this);
+            gameObject.tag = "VR Object";
+        }
     }
 
     // Fire when a controller's trigger is pressed down.
