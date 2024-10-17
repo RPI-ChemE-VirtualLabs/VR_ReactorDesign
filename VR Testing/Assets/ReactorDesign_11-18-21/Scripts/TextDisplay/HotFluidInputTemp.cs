@@ -7,7 +7,7 @@ public class HotFluidInputTemp : MonoBehaviour
 {
     public Tuner HotFluidTuner;
     public Text HotFluidInputTempText;
-    private float Value;
+    [SerializeField] private float Value;
     public double HotFluidInputTempVal;
 
     // Start is called before the first frame update
@@ -19,11 +19,8 @@ public class HotFluidInputTemp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (HotFluidTuner)
-        {
-            Value = HotFluidTuner.GetComponent<Tuner>().Percentage;
-            HotFluidInputTempVal = 353 - Value * 100; //Converting percentage of tuner to actual temperature
-            HotFluidInputTempText.GetComponent<Text>().text = "Hot Fluid Inlet Temp.: " + System.Math.Round(HotFluidInputTempVal,2) + " K"; //Output to display or HUD
-        }
+		//Value = HotFluidTuner.GetComponent<Tuner>().Percentage;
+		HotFluidInputTempVal = 353 - Value * 100; //Converting percentage of tuner to actual temperature
+		HotFluidInputTempText.GetComponent<Text>().text = "Hot Fluid Inlet Temp.: " + System.Math.Round(HotFluidInputTempVal,2) + " K"; //Output to display or HUD
     }
 }

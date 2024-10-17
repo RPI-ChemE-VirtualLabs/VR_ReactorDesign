@@ -8,7 +8,7 @@ public class ColdFluidFlowRate : MonoBehaviour
     public Tuner ColdFluidFlowRateTuner;
     public Text ColdFluidFlowRateText;
     public Text ColdFluidConsumedText;
-    private float Value;
+    [SerializeField] float Value;
     public double ColdFluidFlowRateVal;
 
     public float runtime;
@@ -39,9 +39,9 @@ public class ColdFluidFlowRate : MonoBehaviour
         runtime = feed_script.GetComponent<feed_script>().runtime;
 
 
-        if (ColdFluidFlowRateTuner)
-        {
-            Value = ColdFluidFlowRateTuner.GetComponent<Tuner>().Percentage;
+        //if (ColdFluidFlowRateTuner)
+        //{
+            //Value = ColdFluidFlowRateTuner.GetComponent<Tuner>().Percentage;
             ColdFluidFlowRateVal = 50 + Value * 1950; //Converting percentage to actual value, need to be replaced by the value of divison of range of data and 100
                                                       // kg/min  
 
@@ -50,7 +50,7 @@ public class ColdFluidFlowRate : MonoBehaviour
 
             ColdFluidFlowRateText.GetComponent<Text>().text = "Cold Fluid Flow Rate: " + System.Math.Round(ColdFluidFlowRateVal,0) + " kg/min";
             ColdFluidConsumedText.GetComponent<Text>().text = "Cold Fluid Consumed: " + System.Math.Round(CWconsumed, 0) + " kg";
-        }
+        //}
 
 
         ResetCFFButton.GetComponent<MeshRenderer>().material = stairprops;

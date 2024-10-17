@@ -14,19 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boolPreferences:
     keys:
-    - _MixedRealityToolkit_Editor_IgnoreSettingsPrompts
     - MixedRealityToolkit_Editor_RunOptimalConfig
-    values: 0001
+    - _MixedRealityToolkit_Editor_IgnoreSettingsPrompts
+    values: 0101
   intPreferences:
     keys:
-    - _MixedRealityToolkit_Editor_ConfiguratorState
     - MixedRealityToolkit_Editor_AudioSpatializerCount
-    values: 0000000003000000
+    - _MixedRealityToolkit_Editor_ConfiguratorState
+    values: 00000000c8000000
   floatPreferences:
     keys: []
     values: []
   stringPreferences:
-    keys:
-    - BuildDeployWindow_AppLauncherModelLocation
-    values:
-    - 
+    keys: []
+    values: []

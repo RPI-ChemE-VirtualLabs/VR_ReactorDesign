@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Mixerstatus : MonoBehaviour
+public class MixerStatus : MonoBehaviour
 {
     public GameObject impellerbutton;
-    public GameObject UVbutton;
+    [SerializeField] GameObject UVSourceObj;
+    private UV_source m_uvSrc;
     public GameObject feedbutton;
     //public GameObject findF0;
     [SerializeField] GameObject feed_script;
@@ -30,8 +31,12 @@ public class Mixerstatus : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        if(!feed_script.TryGetComponent<feed_script>(out fs))
+        // Find components.
+        if(!feed_script || !feed_script.TryGetComponent<feed_script>(out fs))
             Debug.LogError("Mixer Status couldn't find the feed script.");
+
+        if (!UVSourceObj ||!UVSourceObj.TryGetComponent<UV_source>(out m_uvSrc))
+            Debug.LogError("No UV Source component found.", UVSourceObj);
     }
 
     // Update is called once per frame
@@ -45,22 +50,8 @@ public class Mixerstatus : MonoBehaviour
          * else
          *  return "Off";
          */
-        statustext.text = "Mixer status: " + (fs.impellerOn ? "On" : "Off");
-
-        if (UVbuttonmaterial == "stop button (Instance)")
-        {
-            UVbuttonpushed = false;
-            
-            UVstatustext.GetComponent<Text>().text = "UV source: Off";
-        }
-
-        else
-        {
-            UVbuttonpushed = true;
-            
-            UVstatustext.GetComponent<Text>().text = "UV source: On";
-        }
-
+        statustext.text = "Mixer Status: " + (fs.impellerOn ? "On" : "Off");
+        UVstatustext.text = "UV Status:" + (m_uvSrc.isEnabled ? "On" : "Off");
 
         if (feedbuttonmaterial == "stop button (Instance)")
         {

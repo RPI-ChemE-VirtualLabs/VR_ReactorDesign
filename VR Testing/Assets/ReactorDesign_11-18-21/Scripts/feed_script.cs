@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class feed_script : MonoBehaviour
 {
+    /*
     public GameObject feedbutton;
     public GameObject UV_source;
     public GameObject feedupbutton;
@@ -15,6 +16,7 @@ public class feed_script : MonoBehaviour
     // public GameObject Impeller_script;
     // Reference to text box which displays the impeller's status.
     public Text impellerDisplay;
+    */
 
     public bool feedbuttonpushed = false;
     public bool feedon;
@@ -22,15 +24,8 @@ public class feed_script : MonoBehaviour
     public bool feedupbuttonpushed = false;
     public bool feeddownbuttonpushed = false;
     public bool UVbuttonpushed = false;
-    bool m_impellerOn = false;
-    public bool impellerOn 
-    {
-        get { return m_impellerOn;  }
-        set {
-            m_impellerOn = value;
-            //impellerDisplay.text = m_impellerOn ? "On" : "Off";
-        }
-    }
+    public bool impellerOn = false;
+    
     public Material off;
     public Material on;
     public string mixing;
@@ -95,25 +90,14 @@ public class feed_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         pHvalue = pHsettings.GetComponent<pHsettings>().pHvalue;
         UVbuttonpushed = UV_source.GetComponent<UV_source>().UVbuttonpushed;
         mixing = impellerbutton.gameObject.GetComponent<Renderer>().material.name; // gets the name of the material from the blue atom contacted
-        rxntemp = HotFluidOutTemp.gameObject.GetComponent<HotFluidOutTemp>().Thout;
+        rxUVbuttonpushed ntemp = HotFluidOutTemp.gameObject.GetComponent<HotFluidOutTemp>().Thout;
+        */
 
-        /*
-        if (mixing == "stop button (Instance)")
-        {
-
-            Impellerbuttonpushed = false;
-            multiplier = 0.01f;
-        }
-
-        if (mixing == "start button (Instance)")
-        {
-            Impellerbuttonpushed = true;
-            multiplier = 1.0f;
-        }*/
-
+        //TODO: Switch statement
         if (UVbuttonpushed == true)
         {
             if (pHvalue == 7)
@@ -157,115 +141,10 @@ public class feed_script : MonoBehaviour
         framerate = frameselapsed / timelapsed;
 
         // Determine if UV source is turned on
-        UVbuttonpushed = UV_source.GetComponent<UV_source>().UVbuttonpushed; // retrieve "UVbuttonpushed" value from the other GameObject
+        //UVbuttonpushed = UV_source.GetComponent<UV_source>().UVbuttonpushed; // retrieve "UVbuttonpushed" value from the other GameObject
 
         // Determine if feed flow rate setpoint is being changed
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit clickinfo2 = new RaycastHit();
-            Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray2, out clickinfo2))
-            {
-                if (clickinfo2.collider != null)
-                {
-                        // ***********************************************************************
-                        if (clickinfo2.transform.gameObject.name == "feedupbutton")
-
-                        {
-                            if (feedupbuttonpushed)
-                            {
-                                feedupbuttonpushed = false;
-                                //feedupbutton.GetComponent<MeshRenderer>().material = off;
-
-                                if (F0set < 0.95f)
-                                {
-                                    F0set = F0set + 0.1f;
-                                }
-
-
-                            }
-                            else
-                            {
-                                feedupbuttonpushed = true;
-                                //feedupbutton.GetComponent<MeshRenderer>().material = on;
-
-                                if (F0set < 0.95f)
-                                {
-                                    F0set = F0set + 0.1f;
-                                }
-
-
-                            }
-                        }
-
-                        //**********************************************************
-                        if (clickinfo2.transform.gameObject.name == "feeddownbutton")
-
-                        {
-                            if (feeddownbuttonpushed)
-                            {
-                                feeddownbuttonpushed = false;
-                                //feeddownbutton.GetComponent<MeshRenderer>().material = off;
-
-                                if (F0set > 0.15f)
-                                {
-                                    F0set = F0set - 0.1f;
-                                }
-
-
-                            }
-                            else
-                            {
-                                feeddownbuttonpushed = true;
-                                //feeddownbutton.GetComponent<MeshRenderer>().material = on;
-
-                                if (F0set > 0.15f)
-                                {
-                                    F0set = F0set - 0.1f;
-                                }
-
-
-                            }
-                        }
-
-                    }
-
-
-                }
-           }
-
-        if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit clickinfo = new RaycastHit();
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out clickinfo))
-                {
-                    if (clickinfo.collider != null)
-                    {
-                        // ***********************************************************************
-                        if (clickinfo.transform.gameObject.name == "feedbutton")
-
-                        {
-                            if (feedbuttonpushed)
-                            {
-                                feedbuttonpushed = false;
-                                feedbutton.GetComponent<MeshRenderer>().material = off;
-
-
-                            }
-                            else
-                            {
-                                feedbuttonpushed = true;
-                                feedbutton.GetComponent<MeshRenderer>().material = on;
-
-                            }
-                        }
-                    }
-
-                }
-            }
-
-        feedbuttoncolor = feedbutton.gameObject.GetComponent<Renderer>().material.name; // gets the name of the material from the feedbutton
+                //feedbuttoncolor = feedbutton.gameObject.GetComponent<Renderer>().material.name; // gets the name of the material from the feedbutton
 
         feedbuttonpushed = feedon;
 
