@@ -131,6 +131,7 @@ public class feed_script : MonoBehaviour
         }   
 
         // ***** Timekeeping operationsDown
+        // TODO: Move this logic to Econ.cs.
         frameselapsed = frameselapsed + 1.0f;
         timelapsed_prev = timelapsed;
         timelapsed += Time.deltaTime;

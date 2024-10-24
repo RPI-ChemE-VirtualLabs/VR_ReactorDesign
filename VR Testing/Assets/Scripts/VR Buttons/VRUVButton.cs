@@ -22,16 +22,21 @@ public class VRUVButton : VRButton
         if (hand != null || VRControllerDebug.usingDebug)
         {
             base.OnVRTriggerDown(pressure);
-            m_uvSrc.EnableUV();
+            if (m_uvSrc.isEnabled)
+                m_uvSrc.DisableUV();
+            else
+				m_uvSrc.EnableUV();
         }
     }
 
 	public override void OnVRTriggerUp(float pressure)
 	{
+        /*
         if (hand != null || VRControllerDebug.usingDebug)
         {
 		    base.OnVRTriggerUp(pressure);
             m_uvSrc.DisableUV();
         }
+        */
 	}
 }

@@ -6,6 +6,7 @@ public class VRControllerDebug : MonoBehaviour
 {
     // Recolor objects that we manipulate.
     [SerializeField] Color handPresenceIndicator;
+    private Color m_oldColor;
     [SerializeField] float speed = 1;
     [SerializeField] float sensitivity = 2.5f;
     private CharacterController control;
@@ -35,6 +36,7 @@ public class VRControllerDebug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Vector2 input = new Vector2(
             Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical"));
@@ -79,15 +81,26 @@ public class VRControllerDebug : MonoBehaviour
 		{
             if(hit.collider.tag == "VR Object")
 			{
+                // If there is already an object selected, clear any references
+                // to it and remove input events from the delegates.
+				if (currentSelection)
+				{
+                    currentSelection.GetComponent<Renderer>().material.SetColor("_Color", m_oldColor);
+                    if(debugTriggerDown != null)
+					    debugTriggerDown -= currentSelection.GetComponent<VRButton>().OnVRTriggerDown; 
+                    if(debugTriggerUp != null)
+						debugTriggerUp -= currentSelection.GetComponent<VRButton>().OnVRTriggerUp; 
+				}
+
+                // Get object references and change object color.
                 currentSelection = hit.collider.gameObject;
-                //oldColor = currentSelection.GetComponent<Material>().color;
+                m_oldColor = currentSelection.GetComponent<Renderer>().material.color;
                 currentSelection.GetComponent<Renderer>().material.SetColor("_Color", handPresenceIndicator);
 
+                // Add VR input events to delegates.
                 debugTriggerDown += currentSelection.GetComponent<VRButton>().OnVRTriggerDown; 
                 debugTriggerUp += currentSelection.GetComponent<VRButton>().OnVRTriggerUp; 
 			}
-            //Debug.Log(hit.collider.gameObject.name);
-
 		}
 	}
 }
