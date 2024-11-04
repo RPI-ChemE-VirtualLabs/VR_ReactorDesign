@@ -39,7 +39,7 @@ public class HotFluidFlowRate : MonoBehaviour
         HotFluidFlowRateText.GetComponent<Text>().text = "Hot Fluid Flow Rate: " + System.Math.Round(HFValue, 2) + " kg/min";
 
 
-        feedbuttonpushed = feed_script.GetComponent<feed_script>().feedbuttonpushed;
+        feedbuttonpushed = feed_script.GetComponent<feed_script>().feedOn;
 
         if (feedbuttonpushed == true)
         {

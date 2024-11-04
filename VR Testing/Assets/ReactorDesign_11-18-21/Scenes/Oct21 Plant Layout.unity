@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HotFluidTuner: {fileID: 1453408228}
   HotFluidInputTempText: {fileID: 4569017}
+  Value: 0
   HotFluidInputTempVal: 0
 --- !u!1001 &9326563
 PrefabInstance:
@@ -1344,7 +1345,7 @@ Transform:
   - {fileID: 215621844}
   - {fileID: 1628038474}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &167534929
 GameObject:
@@ -1397,7 +1398,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &176400807 stripped
 Transform:
@@ -1417,6 +1418,7 @@ GameObject:
   - component: {fileID: 181374009}
   - component: {fileID: 181374008}
   - component: {fileID: 181374007}
+  - component: {fileID: 181374011}
   m_Layer: 0
   m_Name: pH12button
   m_TagString: Untagged
@@ -1494,13 +1496,28 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181374006}
-  m_LocalRotation: {x: 0, y: 0, z: 0.03489949, w: 0.99939084}
-  m_LocalPosition: {x: 0.316, y: 4.153, z: -4.349}
-  m_LocalScale: {x: 0.1, y: 0.05, z: 0.1}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.2000017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_Father: {fileID: 487130374}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4}
+--- !u!114 &181374011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181374006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0717be35cdf6cf349b7198201ae69ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressDepth: 0
+  m_feedManager: {fileID: 945400006}
+  m_pHVal: 12
 --- !u!1 &197847597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,7 +1821,7 @@ PrefabInstance:
     - target: {fileID: 511475126779928901, guid: 381925afe70e1ec4fb862eee66226751,
         type: 3}
       propertyPath: m_RootOrder
-      value: 44
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 511475126779928901, guid: 381925afe70e1ec4fb862eee66226751,
         type: 3}
@@ -1903,7 +1920,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressDepth: 0
-  feedManager: {fileID: 0}
+  m_feedManager: {fileID: 945400006}
+  delta: -0.1
 --- !u!1 &251395670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5274994698107588336, guid: 362dd291944c7014c96a09a191bfb6e2,
@@ -2651,7 +2669,7 @@ PrefabInstance:
     - target: {fileID: 511475126779928901, guid: 381925afe70e1ec4fb862eee66226751,
         type: 3}
       propertyPath: m_RootOrder
-      value: 45
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 511475126779928901, guid: 381925afe70e1ec4fb862eee66226751,
         type: 3}
@@ -3782,7 +3800,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &442578477
 GameObject:
@@ -3877,7 +3895,7 @@ Transform:
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &446649713 stripped
 Transform:
@@ -4484,6 +4502,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c1b33692a3b0044c940bd8105df0894, type: 3}
+--- !u!1 &487130373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 487130374}
+  m_Layer: 0
+  m_Name: pH Buttons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &487130374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487130373}
+  m_LocalRotation: {x: -0, y: -0, z: 0.03489949, w: 0.99939084}
+  m_LocalPosition: {x: 0.316, y: 4.153, z: -4.029}
+  m_LocalScale: {x: 0.10000001, y: 0.050000004, z: 0.1}
+  m_Children:
+  - {fileID: 1793386458}
+  - {fileID: 812384342}
+  - {fileID: 181374010}
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &492021578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5143,20 +5194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad47699e83458047a25354aafd1a2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impellerbutton: {fileID: 776998824}
   UVSourceObj: {fileID: 73380489}
-  feedbutton: {fileID: 0}
-  feed_script: {fileID: 945400006}
+  m_feedManager: {fileID: 945400006}
   statustext: {fileID: 1123814654}
   UVstatustext: {fileID: 709460905}
   feedstatustext: {fileID: 1019902527}
-  UVbuttonpushed: 0
-  feedbuttonpushed: 0
-  codecheck: 0
-  mixerbuttonmaterial: 
-  UVbuttonmaterial: 
-  feedbuttonmaterial: 
-  value2: 0
 --- !u!1 &608279429
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,7 +5292,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 3, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &611290180
 PrefabInstance:
@@ -5262,7 +5304,7 @@ PrefabInstance:
     - target: {fileID: 3226328204075092937, guid: 86ae41361e5cdcc4badea481b8f5728d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 40
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 3226328204075092937, guid: 86ae41361e5cdcc4badea481b8f5728d,
         type: 3}
@@ -5734,7 +5776,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 3, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 42
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &679013483 stripped
 GameObject:
@@ -6469,7 +6511,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &784341844
 PrefabInstance:
@@ -6551,7 +6593,7 @@ PrefabInstance:
     - target: {fileID: 3226328204075092937, guid: 86ae41361e5cdcc4badea481b8f5728d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 38
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 3226328204075092937, guid: 86ae41361e5cdcc4badea481b8f5728d,
         type: 3}
@@ -6769,6 +6811,7 @@ GameObject:
   - component: {fileID: 812384341}
   - component: {fileID: 812384340}
   - component: {fileID: 812384339}
+  - component: {fileID: 812384343}
   m_Layer: 0
   m_Name: pH10button
   m_TagString: Untagged
@@ -6846,13 +6889,28 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812384338}
-  m_LocalRotation: {x: 0, y: 0, z: 0.03489949, w: 0.99939084}
-  m_LocalPosition: {x: 0.316, y: 4.153, z: -4.189}
-  m_LocalScale: {x: 0.1, y: 0.05, z: 0.1}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.6000032}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_Father: {fileID: 487130374}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4}
+--- !u!114 &812384343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812384338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0717be35cdf6cf349b7198201ae69ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressDepth: 0
+  m_feedManager: {fileID: 945400006}
+  m_pHVal: 10
 --- !u!1 &816586066 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000012099730580, guid: 3014e945623a938409cef35c22fbd0a1,
@@ -7662,7 +7720,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &909715800
 PrefabInstance:
@@ -7997,8 +8055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192fbae942fbd7a479aaddb545e09301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feedbuttonpushed: 0
-  feedon: 0
+  feedOn: 0
   running_CA: 0
   feedupbuttonpushed: 0
   feeddownbuttonpushed: 0
@@ -8007,7 +8064,6 @@ MonoBehaviour:
   off: {fileID: 2100000, guid: eb60def5647e50243b8377630e355e84, type: 2}
   on: {fileID: 2100000, guid: b412d48a07462b1439fa05cfbfbf32bd, type: 2}
   mixing: 
-  feedbuttoncolor: 
   rateconstant: 0
   k: 0.01
   multiplier: 0.01
@@ -8028,9 +8084,9 @@ MonoBehaviour:
   dnAdt: 0
   CAin: 0
   oldruntime: 0
-  pHvalue: 7
   Ea_R: 13500
   rxntemp: 0
+  pHvalue: 7
   counter: 0
   counter2: 0
   rcounter: 0
@@ -11084,7 +11140,7 @@ PrefabInstance:
     - target: {fileID: 511475126779928901, guid: 381925afe70e1ec4fb862eee66226751,
         type: 3}
       propertyPath: m_RootOrder
-      value: 46
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 511475126779928901, guid: 381925afe70e1ec4fb862eee66226751,
         type: 3}
@@ -11346,7 +11402,7 @@ Transform:
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1123814651
 GameObject:
@@ -11684,7 +11740,7 @@ Transform:
   m_LocalScale: {x: 0.55, y: 0.05, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 4.5, y: -90, z: 0}
 --- !u!1001 &1187828256
 PrefabInstance:
@@ -11968,7 +12024,7 @@ Transform:
   - {fileID: 641523329}
   - {fileID: 374379662}
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1218426678
 PrefabInstance:
@@ -12828,7 +12884,7 @@ PrefabInstance:
     - target: {fileID: 511475126779928901, guid: 381925afe70e1ec4fb862eee66226751,
         type: 3}
       propertyPath: m_RootOrder
-      value: 43
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 511475126779928901, guid: 381925afe70e1ec4fb862eee66226751,
         type: 3}
@@ -12923,11 +12979,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1332833061}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb4688969d59524dae64ec434721095, type: 3}
+  m_Script: {fileID: 11500000, guid: 135f6daa9b2df4342bf443f8d461c0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pressDepth: 0
-  feedManager: {fileID: 0}
+  m_feedManager: {fileID: 945400006}
+  delta: 0.1
 --- !u!1001 &1338122325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13998,7 +14055,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1513162097
 GameObject:
@@ -15676,7 +15733,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1517391751
 GameObject:
@@ -15771,7 +15828,7 @@ Transform:
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1523588150 stripped
 Transform:
@@ -16799,7 +16856,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1708327092
 PrefabInstance:
@@ -17095,6 +17152,7 @@ MonoBehaviour:
   ColdFluidFlowRateTuner: {fileID: 1396668446}
   ColdFluidFlowRateText: {fileID: 1730472963}
   ColdFluidConsumedText: {fileID: 2113402530}
+  Value: 0
   ColdFluidFlowRateVal: 0
   runtime: 0
   CWconsumed: 0
@@ -17893,6 +17951,7 @@ GameObject:
   - component: {fileID: 1793386457}
   - component: {fileID: 1793386456}
   - component: {fileID: 1793386455}
+  - component: {fileID: 1793386459}
   m_Layer: 0
   m_Name: pH7button
   m_TagString: Untagged
@@ -17970,13 +18029,28 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793386454}
-  m_LocalRotation: {x: 0, y: 0, z: 0.03489949, w: 0.99939084}
-  m_LocalPosition: {x: 0.316, y: 4.153, z: -4.029}
-  m_LocalScale: {x: 0.1, y: 0.05, z: 0.1}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_Father: {fileID: 487130374}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4}
+--- !u!114 &1793386459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793386454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0717be35cdf6cf349b7198201ae69ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressDepth: 0
+  m_feedManager: {fileID: 945400006}
+  m_pHVal: 7
 --- !u!1 &1796690531
 GameObject:
   m_ObjectHideFlags: 0
@@ -20336,7 +20410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressDepth: 0
-  feedManager: {fileID: 0}
+  feedManager: {fileID: 945400006}
 --- !u!4 &2069973005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9207700561926150271, guid: 96076b98cbae40644a9d953072d6f310,
@@ -20654,6 +20728,7 @@ MonoBehaviour:
   ColdFluidFlowRateTuner: {fileID: 1396668446}
   ColdFluidFlowRateText: {fileID: 1730472963}
   ColdFluidConsumedText: {fileID: 2113402530}
+  Value: 0
   ColdFluidFlowRateVal: 0
   runtime: 0
   CWconsumed: 0
@@ -20675,7 +20750,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2103563546 stripped
 Transform:
@@ -22539,6 +22614,7 @@ MonoBehaviour:
   ColdFluidFlowRateTuner: {fileID: 1396668446}
   ColdFluidFlowRateText: {fileID: 2113402530}
   ColdFluidConsumedText: {fileID: 2113402530}
+  Value: 0
   ColdFluidFlowRateVal: 0
   runtime: 0
   CWconsumed: 0

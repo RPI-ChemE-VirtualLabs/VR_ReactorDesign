@@ -163,7 +163,7 @@ public class Econ : MonoBehaviour
 
         impellerbuttonpushed = impeller_script.GetComponent<impeller_script>().impellerbuttonpushed;
         UVbuttonpushed = feed_script.GetComponent<feed_script>().UVbuttonpushed;
-        feedbuttonpushed = feed_script.GetComponent<feed_script>().feedbuttonpushed;
+        feedbuttonpushed = feed_script.GetComponent<feed_script>().feedOn;
 
         if (impellerbuttonpushed == true)
         {

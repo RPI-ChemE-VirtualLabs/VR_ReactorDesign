@@ -17,6 +17,6 @@ public class VRFeed : VRButton
     public override void OnVRTriggerDown(float pressure)
     {
         base.OnVRTriggerDown(pressure);
-        feedS.feedon = Active;
+        feedS.feedOn = !feedS.feedOn;
     }
 }

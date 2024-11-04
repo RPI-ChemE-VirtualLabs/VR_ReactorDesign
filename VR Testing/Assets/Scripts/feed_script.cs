@@ -18,23 +18,22 @@ public class feed_script : MonoBehaviour
     public Text impellerDisplay;
     */
 
-    public bool feedbuttonpushed = false;
-    public bool feedon;
+    public bool feedOn = false;
     public bool running_CA = false;
     public bool feedupbuttonpushed = false;
     public bool feeddownbuttonpushed = false;
     public bool UVbuttonpushed = false;
     public bool impellerOn = false;
-    
+
     public Material off;
     public Material on;
     public string mixing;
 
-    public string feedbuttoncolor;
+    //public string feedbuttoncolor;
     public float rateconstant;
     public float GetRuntime() { return runtime; }
     public float k;
-    public float multiplier =0.01f;
+    public float multiplier = 0.01f;
 
     public float runtime = 0.00000f;
     public float starttime = 0.00000f;
@@ -60,14 +59,18 @@ public class feed_script : MonoBehaviour
     public float dnAdt = 0;
     public float CAin = 0f;
     public float oldruntime = 0f;
-    public float pHvalue = 7f;
     public float Ea_R = 1.35e4f;
     public float rxntemp;
 
-//  # times Record button pushed. 0 = none; 1 = recording; 2 = stop recording, reset counter to 0
+    // pH-related variables.
+    public float pHvalue = 7f;
+    private float m_NaOHConsumed = 0.0f;
+    private float m_NaOHConcentration = 0.0f;
+
+    //  # times Record button pushed. 0 = none; 1 = recording; 2 = stop recording, reset counter to 0
     public int counter = 0;
     public int counter2 = 0;
-    public int rcounter = 0;  
+    public int rcounter = 0;
     public int framecounter = 0;
 
     public float[] runtimearray = new float[1000];
@@ -97,13 +100,15 @@ public class feed_script : MonoBehaviour
         rxUVbuttonpushed ntemp = HotFluidOutTemp.gameObject.GetComponent<HotFluidOutTemp>().Thout;
         */
 
+        CalculatePH();
+
         //TODO: Switch statement
         if (UVbuttonpushed == true)
         {
             if (pHvalue == 7)
             {
                 // k = (0.02612f)*multiplier*Mathf.Exp(-1f*Ea_R/rxntemp); // min^-1
-                k = (2.6115e18f)*multiplier*Mathf.Exp(-1f*Ea_R/rxntemp); // min^-1
+                k = (2.6115e18f) * multiplier * Mathf.Exp(-1f * Ea_R / rxntemp); // min^-1
             }
             if (pHvalue == 10)
             {
@@ -121,14 +126,8 @@ public class feed_script : MonoBehaviour
             k = 0.0f;
         }
 
-        if (feedbuttonpushed == true)
-        {
-            F0 = F0set;
-        }
-        else
-        {
-            F0 = 0f;
-        }   
+        F0set = Mathf.Clamp(F0set, 0.1f, 1f);
+        F0 = feedOn ? F0set : 0;
 
         // ***** Timekeeping operationsDown
         // TODO: Move this logic to Econ.cs.
@@ -145,11 +144,10 @@ public class feed_script : MonoBehaviour
         //UVbuttonpushed = UV_source.GetComponent<UV_source>().UVbuttonpushed; // retrieve "UVbuttonpushed" value from the other GameObject
 
         // Determine if feed flow rate setpoint is being changed
-                //feedbuttoncolor = feedbutton.gameObject.GetComponent<Renderer>().material.name; // gets the name of the material from the feedbutton
+        //feedbuttoncolor = feedbutton.gameObject.GetComponent<Renderer>().material.name; // gets the name of the material from the feedbutton
 
-        feedbuttonpushed = feedon;
 
-        if (feedbuttonpushed == true)
+        if (feedOn)
             counter++;
 
         if (counter > 0)
@@ -157,51 +155,69 @@ public class feed_script : MonoBehaviour
             runtime += Time.deltaTime;
         }
 
-            // Determine CA and perform mass balances
-            if (feedbuttonpushed == true)
+        // Determine CA and perform mass balances
+        if (feedOn == true)
+        {
+            CAin = 2f;
+
+            if (UVbuttonpushed == true)
             {
-                CAin = 2f;
 
-                if (UVbuttonpushed == true)
-                {
+                running_CA = true;
 
-                    running_CA = true;
+                CA = nA / VR;
 
-                    CA = nA / VR;
+                dnAdt = F0 * (CAin - CA) - k * CA * VR;
 
-                    dnAdt = F0 * (CAin - CA) - k * CA * VR;
+                nA = nA + dnAdt * (runtime - oldruntime);
 
-                    nA = nA + dnAdt * (runtime - oldruntime);
+                CA = nA / VR;
 
-                    CA = nA / VR;
+            }
 
-                }
+            else
+            {
 
-                else
-                {
+                running_CA = true;
 
-                    running_CA = true;
+                CA = nA / VR;
 
-                    CA = nA / VR;
+                dnAdt = F0 * (CAin - CA);
 
-                    dnAdt = F0 * (CAin - CA);
+                nA = nA + dnAdt * (runtime - oldruntime);
 
-                    nA = nA + dnAdt * (runtime - oldruntime);
-
-                    CA = nA / VR;
-
-                }
-
+                CA = nA / VR;
 
             }
 
 
-
-            oldruntime = runtime;
-
-
         }
+
+
+        oldruntime = runtime;
+
     }
+
+    private void CalculatePH()
+	{
+        m_NaOHConsumed += m_NaOHConcentration * 1000f * .04f * Time.fixedDeltaTime * (F0 / 60);
+        switch(pHvalue)
+		{
+            case 7:
+                m_NaOHConcentration = 0.0f;
+                break;
+            case 10:
+                m_NaOHConcentration = 0.0001f;
+                break;
+            case 12:
+                m_NaOHConcentration = 0.01f;
+                break;
+            default:
+                Debug.LogError("pH at unexpected value.");
+                break;
+		}
+	}
+}
 
 /*
 internal class Impeller_script
