@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Econ : MonoBehaviour
 {
-
     //public float watercost =0f;
     public float NaOHcost = 0f;
     public double ColdFluidCost = 0f;
@@ -23,6 +22,9 @@ public class Econ : MonoBehaviour
 
     // public float ColdFluidInletTemp; // K
     public double costperkg = (0.056f/1000f); // cost of chilling water per kg
+
+    // GameObject containing the economy window background and canvas.
+    [SerializeField] GameObject econViewWindow;
 
     public GameObject feed_script; // script
     public GameObject pHsettings; // script
@@ -85,8 +87,15 @@ public class Econ : MonoBehaviour
     public bool UVbuttonpushed = false;
     public bool feedbuttonpushed = false;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+        // Assign window toggle to menu button.
+        VR_CharacterController.menuDown += ToggleEconWindow;
+        VR_CharacterController.menuDownTriple += ResetEcon;
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
         begintime += Time.deltaTime;
 
@@ -110,50 +119,17 @@ public class Econ : MonoBehaviour
         lastframetime = timelapsed - timelapsed_prev;
         framerate = frameselapsed / timelapsed;
         runtimeprev = runtime;
-        runtime = feed_script.GetComponent<feed_script>().runtime;
+        runtime += Time.deltaTime; //feed_script.GetComponent<feed_script>().runtime;
         econtime = runtime - resettime;
         ResetEconButton.GetComponent<MeshRenderer>().material = stairprops;
 
         HotFluidOutTempVal = HotFluidOutTemp.GetComponent<HotFluidOutTemp>().HotFluidOutputVal;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit clickinfo = new RaycastHit();
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out clickinfo))
-            {
-                if (clickinfo.collider != null)
-                {
-                    // ***********************************************************************
-                    if (clickinfo.transform.gameObject.name == "ResetEconButton")
-
-                    { 
-                        Laborcost = 0f;
-                        depreciation = 0;
-                        ColdFluidCost = 0;
-                        pumpingcost = 0;
-                        impellercost = 0;
-                        UVcost = 0;
-                        electricitycost = 0;
-                        NaOHcost = 0;
-                        totalcost = 0d;
-                        NewNaOHconsumed = 0;
-                        ResetEconButton.GetComponent<MeshRenderer>().material = yellow;
-                        econtime = 0;
-                        resettime = runtime;
-                    }
-                }
-
-            }
-        }
-
-        
-
+       
         pHvalue = pHsettings.GetComponent<pHsettings>().pHvalue;
 
         NaOHconc = pHsettings.GetComponent<pHsettings>().NaOHconc;
 
-        NewNaOHconsumed = NewNaOHconsumed + NaOHconc * 1000f * 0.04f * (runtime - runtimeprev) * (F0/60); 
+        NewNaOHconsumed = NewNaOHconsumed + NaOHconc * 1000f * 0.04f * (runtime - runtimeprev) * (F0 * Time.fixedDeltaTime); 
 
         NaOHconsumed = pHsettings.GetComponent<pHsettings>().NaOHconsumed; // flowrate in m^3/s from feed_script
 
@@ -242,6 +218,7 @@ public class Econ : MonoBehaviour
         DepreciationText.GetComponent<Text>().text = "Depreciation Cost ($): " + System.Math.Round(depreciation, 3);
 
         Laborcost = Laborcost + 0.0019f* (runtime - runtimeprev); //$/s
+        Debug.Log("test");
         LaborcostText.GetComponent<Text>().text = "Labor Cost ($): " + System.Math.Round(Laborcost, 3);
 
         ColdFluidFlowRateVal = ColdFluidFlowRate.GetComponent<ColdFluidFlowRate>().ColdFluidFlowRateVal; // in kg/min
@@ -270,9 +247,29 @@ public class Econ : MonoBehaviour
 
         costpermin = 60*totalcost / econtime; // $ per minute
         costperminText.GetComponent<Text>().text = "Cost ($/min): " + System.Math.Round(costpermin, 3);
-
-
-
-
     }
+
+    // Toggles the visibility of the economy view window.
+    private void ToggleEconWindow()
+	{
+        econViewWindow.SetActive(!econViewWindow.activeSelf);
+	}
+
+    // Reset economy values.
+    private void ResetEcon()
+	{
+        Debug.Log("resetting economy window.");
+		Laborcost = 0f;
+		depreciation = 0;
+		ColdFluidCost = 0;
+		pumpingcost = 0;
+		impellercost = 0;
+		UVcost = 0;
+		electricitycost = 0;
+		NaOHcost = 0;
+		totalcost = 0d;
+		NewNaOHconsumed = 0;
+		econtime = 0;
+		resettime = runtime;
+	}
 }

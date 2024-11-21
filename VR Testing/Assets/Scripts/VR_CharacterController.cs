@@ -23,15 +23,10 @@ public class VR_CharacterController : MonoBehaviour {
 public class TriggerEvent : UnityEvent<bool> { }
 
 public class VR_CharacterController : MonoBehaviour {
-    //public TriggerEvent triggerPress;
-    //public TriggerEvent triggerRelease;
-
     private bool lastButtonState = false;
     private List<InputDevice> inputDevices;
 
-    //private InputDevice headsetDevice;
     private Camera playerCam;
-    //MotionControllerStateCache moConCache;
 
     bool triggerDownLastState = false;
     // TODO: Change case of triggerAction
@@ -41,23 +36,24 @@ public class VR_CharacterController : MonoBehaviour {
     [HideInInspector] public static event triggerAction triggerLeftUp;
     [HideInInspector] public static event triggerAction triggerRightUp;
 
+    [HideInInspector] public delegate void menuAction();
+    [HideInInspector] public static event menuAction menuDown;
+    [HideInInspector] public static event menuAction menuUp;
+    [HideInInspector] public static event menuAction menuDownTriple;
+
     private InputDevice leftWand;
     private InputDevice rightWand;
-    //private InputDevice hmd;
+
+    // Time measurement to detect double/triple clicks.
+    bool buttonTimerActive;
+    float buttonTimer = 0;
+    float buttonTimerMax = 1.0f;
+    int numClicks = 0;
 
     private void Awake() {
-        // Register events.
-        /*
-        if (triggerPress == null) {
-            triggerPress = new TriggerEvent();
-            triggerRelease = new TriggerEvent();
-        }*/
-
         inputDevices = new List<InputDevice>();
 
-        playerCam = FindObjectOfType<Camera>(); //look for player camera in scene
-        //if(playerCam)
-            //print("Player camera found");
+        playerCam = FindObjectOfType<Camera>(); 
     }
 
     void OnEnable() {
@@ -113,14 +109,11 @@ public class VR_CharacterController : MonoBehaviour {
     }
 
     void Update() {
-        //todo: right controller specifically is drifting forward (checked with both controllers, not hw issue), why?
-        //use system of booleans to get input states
-
-        //go through each device to grab input
         float leftTriggerVal;
         float rightTriggerVal;
         Vector2 leftJoyVal;
         Vector2 rightJoyVal;
+        bool leftMenu = false;
         
         // Get state of left stick for movement.
         // TODO: Move character movement to another script and only handle input here.
@@ -141,6 +134,34 @@ public class VR_CharacterController : MonoBehaviour {
             else if(triggerRightUp != null)
                 triggerRightUp(leftTriggerVal);
         }
+
+        // Get menu button state.
+        if (leftWand.TryGetFeatureValue(CommonUsages.menuButton, out leftMenu))
+		{
+			if (menuDown != null )
+			{
+                if (leftMenu)
+                {
+                    menuDown();
+					if (!buttonTimerActive)
+					{
+                        buttonTimerActive = true;
+					}
+                    numClicks++;
+                    if(numClicks >= 3 && menuDownTriple != null)
+					{
+                        menuDownTriple();
+                        numClicks = 0;
+                        buttonTimerActive = false;
+					}
+                }
+			}
+		}
+
+        if(buttonTimerActive)
+		{
+            buttonTimer += Time.deltaTime;
+		}
 
         //getting the direct headset rotation is unnecessarily difficult so i'm gonna do this in a jank way
         //just get the y rotation of the camera attached to the headset and apply that to the player

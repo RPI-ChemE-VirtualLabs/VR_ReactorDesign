@@ -1990,7 +1990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &266047184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2659,6 +2659,157 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 431987822}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &355935352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355935353}
+  - component: {fileID: 355935356}
+  - component: {fileID: 355935355}
+  - component: {fileID: 355935354}
+  m_Layer: 0
+  m_Name: Total Cost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &355935353
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355935352}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000006400255, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_Children: []
+  m_Father: {fileID: 2114774062}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1, y: -2.92}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &355935354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355935352}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaOHcost: 0
+  ColdFluidCost: 0
+  NaOHconsumed: 0
+  pHvalue: 7
+  pumpingcost: 0
+  impellercost: 0
+  UVcost: 0
+  electricitycost: 0
+  totalcost: 0
+  ColdFluidFlowRateVal: 0
+  ColdFluidInputTempVal: 0
+  HotFluidOutTempVal: 0
+  costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
+  feed_script: {fileID: 945400006}
+  pHsettings: {fileID: 902396148}
+  ColdFluidFlowRate: {fileID: 2101708703}
+  HotFluidFlowRate: {fileID: 947648005}
+  HotFluidOutTemp: {fileID: 1513162097}
+  ColdFluidInputTemp: {fileID: 400173357}
+  impeller_script: {fileID: 862798591}
+  ResetEconButton: {fileID: 1107706842}
+  yellow: {fileID: 2100000, guid: ea1be425a90665f4ea4578e3e8866d1f, type: 2}
+  stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
+  NaOHcostText: {fileID: 1689269135}
+  ColdFluidCostText: {fileID: 645822301}
+  DepreciationText: {fileID: 1587596112}
+  LaborcostText: {fileID: 1368324581}
+  electricitycostText: {fileID: 982344148}
+  totalcostText: {fileID: 355935355}
+  econtimeText: {fileID: 2019074473}
+  costperminText: {fileID: 1613732388}
+  runtime: 0
+  starttime: 0
+  recordtime: 0
+  deltat: 0
+  nframes: 0
+  npoints: 0
+  frameselapsed: 0
+  timelapsed: 0
+  framerate: 0
+  runtimeprev: 0
+  depreciation: 0
+  Laborcost: 0
+  impfactor: 0
+  feedfactor: 0
+  UVfactor: 0
+  F0: 0
+  tempval: 0
+  NewNaOHconsumed: 0
+  NaOHconc: 0
+  econtime: 0
+  resettime: 0
+  costpermin: 0
+  CWConsumed: 0
+  HWConsumed: 0
+  impellerbuttonpushed: 0
+  UVbuttonpushed: 0
+  feedbuttonpushed: 0
+--- !u!114 &355935355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355935352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Total Cost ($):'
+--- !u!222 &355935356
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355935352}
+  m_CullTransparentMesh: 0
 --- !u!1001 &356025576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3198,7 +3349,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408725890}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
   m_Name: 
@@ -3216,6 +3367,7 @@ MonoBehaviour:
   ColdFluidInputTempVal: 0
   HotFluidOutTempVal: 0
   costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
   feed_script: {fileID: 945400006}
   pHsettings: {fileID: 902396148}
   ColdFluidFlowRate: {fileID: 2101708703}
@@ -3990,7 +4142,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449746622}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
   m_Name: 
@@ -4008,6 +4160,7 @@ MonoBehaviour:
   ColdFluidInputTempVal: 0
   HotFluidOutTempVal: 0
   costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
   feed_script: {fileID: 945400006}
   pHsettings: {fileID: 902396148}
   ColdFluidFlowRate: {fileID: 2101708703}
@@ -5460,6 +5613,157 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2122836877}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &645822300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 645822304}
+  - component: {fileID: 645822303}
+  - component: {fileID: 645822301}
+  - component: {fileID: 645822302}
+  m_Layer: 0
+  m_Name: ColdFluidCost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &645822301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645822300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Cold Fluid Cost ($):'
+--- !u!114 &645822302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645822300}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaOHcost: 0
+  ColdFluidCost: 0
+  NaOHconsumed: 0
+  pHvalue: 7
+  pumpingcost: 0
+  impellercost: 0
+  UVcost: 0
+  electricitycost: 0
+  totalcost: 0
+  ColdFluidFlowRateVal: 0
+  ColdFluidInputTempVal: 0
+  HotFluidOutTempVal: 0
+  costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
+  feed_script: {fileID: 945400006}
+  pHsettings: {fileID: 902396148}
+  ColdFluidFlowRate: {fileID: 2101708703}
+  HotFluidFlowRate: {fileID: 947648005}
+  HotFluidOutTemp: {fileID: 1513162097}
+  ColdFluidInputTemp: {fileID: 432999788}
+  impeller_script: {fileID: 862798591}
+  ResetEconButton: {fileID: 1107706842}
+  yellow: {fileID: 2100000, guid: ea1be425a90665f4ea4578e3e8866d1f, type: 2}
+  stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
+  NaOHcostText: {fileID: 1689269135}
+  ColdFluidCostText: {fileID: 645822301}
+  DepreciationText: {fileID: 1587596112}
+  LaborcostText: {fileID: 1368324581}
+  electricitycostText: {fileID: 982344148}
+  totalcostText: {fileID: 355935355}
+  econtimeText: {fileID: 2019074473}
+  costperminText: {fileID: 1613732388}
+  runtime: 0
+  starttime: 0
+  recordtime: 0
+  deltat: 0
+  nframes: 0
+  npoints: 0
+  frameselapsed: 0
+  timelapsed: 0
+  framerate: 0
+  runtimeprev: 0
+  depreciation: 0
+  Laborcost: 0
+  impfactor: 0
+  feedfactor: 0
+  UVfactor: 0
+  F0: 0
+  tempval: 0
+  NewNaOHconsumed: 0
+  NaOHconc: 0
+  econtime: 0
+  resettime: 0
+  costpermin: 0
+  CWConsumed: 0
+  HWConsumed: 0
+  impellerbuttonpushed: 0
+  UVbuttonpushed: 0
+  feedbuttonpushed: 0
+--- !u!222 &645822303
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645822300}
+  m_CullTransparentMesh: 0
+--- !u!224 &645822304
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645822300}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000006400255, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_Children: []
+  m_Father: {fileID: 2114774062}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1.0040016, y: -0.6930008}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &651998874
 GameObject:
   m_ObjectHideFlags: 0
@@ -5478,7 +5782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &651998875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5518,7 +5822,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &651998877
 Canvas:
   m_ObjectHideFlags: 0
@@ -5528,7 +5832,7 @@ Canvas:
   m_GameObject: {fileID: 651998874}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -5548,8 +5852,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651998874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 53.5}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1074205162}
   - {fileID: 2124385364}
@@ -5558,9 +5862,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -7.2, y: 69.7}
+  m_SizeDelta: {x: 926, y: 521}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &652265455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7373,6 +7677,103 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6020cc175f4a5e47a7d50548bc38af5, type: 3}
+--- !u!1 &873930263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 873930264}
+  - component: {fileID: 873930267}
+  - component: {fileID: 873930266}
+  - component: {fileID: 873930265}
+  m_Layer: 0
+  m_Name: Economy Window
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &873930264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873930263}
+  m_LocalRotation: {x: -0, y: -0, z: -0.026983453, w: 0.99963593}
+  m_LocalPosition: {x: -0.285, y: -0.026, z: -0}
+  m_LocalScale: {x: 0.035374, y: 0.035374, z: 0.035374}
+  m_Children:
+  - {fileID: 2114774062}
+  m_Father: {fileID: 1810674785}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.092}
+--- !u!64 &873930265
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873930263}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &873930266
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873930263}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &873930267
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873930263}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &883596712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: c6020cc175f4a5e47a7d50548bc38af5,
@@ -10384,6 +10785,157 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1846378536}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &982344147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 982344151}
+  - component: {fileID: 982344150}
+  - component: {fileID: 982344148}
+  - component: {fileID: 982344149}
+  m_Layer: 0
+  m_Name: Electricity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &982344148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982344147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Electricity Cost ($):'
+--- !u!114 &982344149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982344147}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaOHcost: 0
+  ColdFluidCost: 0
+  NaOHconsumed: 0
+  pHvalue: 7
+  pumpingcost: 0
+  impellercost: 0
+  UVcost: 0
+  electricitycost: 0
+  totalcost: 0
+  ColdFluidFlowRateVal: 0
+  ColdFluidInputTempVal: 0
+  HotFluidOutTempVal: 0
+  costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
+  feed_script: {fileID: 945400006}
+  pHsettings: {fileID: 902396148}
+  ColdFluidFlowRate: {fileID: 2101708703}
+  HotFluidFlowRate: {fileID: 947648005}
+  HotFluidOutTemp: {fileID: 1513162097}
+  ColdFluidInputTemp: {fileID: 400173357}
+  impeller_script: {fileID: 862798591}
+  ResetEconButton: {fileID: 1107706842}
+  yellow: {fileID: 2100000, guid: ea1be425a90665f4ea4578e3e8866d1f, type: 2}
+  stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
+  NaOHcostText: {fileID: 1689269135}
+  ColdFluidCostText: {fileID: 645822301}
+  DepreciationText: {fileID: 1587596112}
+  LaborcostText: {fileID: 1368324581}
+  electricitycostText: {fileID: 982344148}
+  totalcostText: {fileID: 355935355}
+  econtimeText: {fileID: 2019074473}
+  costperminText: {fileID: 1613732388}
+  runtime: 0
+  starttime: 0
+  recordtime: 0
+  deltat: 0
+  nframes: 0
+  npoints: 0
+  frameselapsed: 0
+  timelapsed: 0
+  framerate: 0
+  runtimeprev: 0
+  depreciation: 0
+  Laborcost: 0
+  impfactor: 0
+  feedfactor: 0
+  UVfactor: 0
+  F0: 0
+  tempval: 0
+  NewNaOHconsumed: 0
+  NaOHconc: 0
+  econtime: 0
+  resettime: 0
+  costpermin: 0
+  CWConsumed: 0
+  HWConsumed: 0
+  impellerbuttonpushed: 0
+  UVbuttonpushed: 0
+  feedbuttonpushed: 0
+--- !u!222 &982344150
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982344147}
+  m_CullTransparentMesh: 0
+--- !u!224 &982344151
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982344147}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000006400255, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_Children: []
+  m_Father: {fileID: 2114774062}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1, y: -1.77}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &983862271 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 109386, guid: 766a616c20b3a8d4aa8290fa3682844f,
@@ -10917,7 +11469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_RootOrder
@@ -11327,7 +11879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1107706843
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12176,7 +12728,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224414395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
   m_Name: 
@@ -12194,6 +12746,7 @@ MonoBehaviour:
   ColdFluidInputTempVal: 0
   HotFluidOutTempVal: 0
   costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
   feed_script: {fileID: 945400006}
   pHsettings: {fileID: 902396148}
   ColdFluidFlowRate: {fileID: 2101708703}
@@ -12265,9 +12818,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230532384}
-  m_LocalRotation: {x: -0.4199543, y: 0.5688922, z: -0.41995436, w: 0.5688922}
-  m_LocalPosition: {x: 0, y: 0, z: -8188.6206}
-  m_LocalScale: {x: 11.350336, y: 24.213398, z: 12.317743}
+  m_LocalRotation: {x: -0, y: -0, z: 0.00000006400255, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.5502272}
+  m_LocalScale: {x: 1.0750797, y: 1.0750791, z: 1}
   m_Children:
   - {fileID: 947648009}
   - {fileID: 1726174845}
@@ -12278,7 +12831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 72.54091, y: -3654.9207}
+  m_AnchoredPosition: {x: 418.25385, y: -66.538574}
   m_SizeDelta: {x: 898, y: 402}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1230532386
@@ -12320,7 +12873,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1230532388
 Canvas:
   m_ObjectHideFlags: 0
@@ -12598,7 +13151,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290077381}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
   m_Name: 
@@ -12616,6 +13169,7 @@ MonoBehaviour:
   ColdFluidInputTempVal: 0
   HotFluidOutTempVal: 0
   costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
   feed_script: {fileID: 945400006}
   pHsettings: {fileID: 902396148}
   ColdFluidFlowRate: {fileID: 2101708703}
@@ -13210,6 +13764,157 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 058bbd43bededbe4fa0444c56e416734, type: 3}
+--- !u!1 &1368324580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1368324584}
+  - component: {fileID: 1368324583}
+  - component: {fileID: 1368324581}
+  - component: {fileID: 1368324582}
+  m_Layer: 0
+  m_Name: Labor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1368324581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368324580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Labor Cost ($):'
+--- !u!114 &1368324582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368324580}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaOHcost: 0
+  ColdFluidCost: 0
+  NaOHconsumed: 0
+  pHvalue: 7
+  pumpingcost: 0
+  impellercost: 0
+  UVcost: 0
+  electricitycost: 0
+  totalcost: 0
+  ColdFluidFlowRateVal: 0
+  ColdFluidInputTempVal: 0
+  HotFluidOutTempVal: 0
+  costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
+  feed_script: {fileID: 945400006}
+  pHsettings: {fileID: 902396148}
+  ColdFluidFlowRate: {fileID: 2101708703}
+  HotFluidFlowRate: {fileID: 947648005}
+  HotFluidOutTemp: {fileID: 1513162097}
+  ColdFluidInputTemp: {fileID: 432999788}
+  impeller_script: {fileID: 862798591}
+  ResetEconButton: {fileID: 1107706842}
+  yellow: {fileID: 2100000, guid: ea1be425a90665f4ea4578e3e8866d1f, type: 2}
+  stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
+  NaOHcostText: {fileID: 1689269135}
+  ColdFluidCostText: {fileID: 645822301}
+  DepreciationText: {fileID: 1587596112}
+  LaborcostText: {fileID: 1368324581}
+  electricitycostText: {fileID: 982344148}
+  totalcostText: {fileID: 355935355}
+  econtimeText: {fileID: 2019074473}
+  costperminText: {fileID: 1613732388}
+  runtime: 0
+  starttime: 0
+  recordtime: 0
+  deltat: 0
+  nframes: 0
+  npoints: 0
+  frameselapsed: 0
+  timelapsed: 0
+  framerate: 0
+  runtimeprev: 0
+  depreciation: 0
+  Laborcost: 0
+  impfactor: 0
+  feedfactor: 0
+  UVfactor: 0
+  F0: 0
+  tempval: 0
+  NewNaOHconsumed: 0
+  NaOHconc: 0
+  econtime: 0
+  resettime: 0
+  costpermin: 0
+  CWConsumed: 0
+  HWConsumed: 0
+  impellerbuttonpushed: 0
+  UVbuttonpushed: 0
+  feedbuttonpushed: 0
+--- !u!222 &1368324583
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368324580}
+  m_CullTransparentMesh: 0
+--- !u!224 &1368324584
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368324580}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000006400255, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_Children: []
+  m_Father: {fileID: 2114774062}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1, y: -1.4000015}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1396668443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16040,6 +16745,157 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 485127261}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1587596111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587596115}
+  - component: {fileID: 1587596114}
+  - component: {fileID: 1587596112}
+  - component: {fileID: 1587596113}
+  m_Layer: 0
+  m_Name: Depreciation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1587596112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587596111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Depreciation Cost ($):'
+--- !u!114 &1587596113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587596111}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaOHcost: 0
+  ColdFluidCost: 0
+  NaOHconsumed: 0
+  pHvalue: 7
+  pumpingcost: 0
+  impellercost: 0
+  UVcost: 0
+  electricitycost: 0
+  totalcost: 0
+  ColdFluidFlowRateVal: 0
+  ColdFluidInputTempVal: 0
+  HotFluidOutTempVal: 0
+  costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
+  feed_script: {fileID: 945400006}
+  pHsettings: {fileID: 902396148}
+  ColdFluidFlowRate: {fileID: 2101708703}
+  HotFluidFlowRate: {fileID: 947648005}
+  HotFluidOutTemp: {fileID: 1513162097}
+  ColdFluidInputTemp: {fileID: 432999788}
+  impeller_script: {fileID: 862798591}
+  ResetEconButton: {fileID: 1107706842}
+  yellow: {fileID: 2100000, guid: ea1be425a90665f4ea4578e3e8866d1f, type: 2}
+  stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
+  NaOHcostText: {fileID: 1689269135}
+  ColdFluidCostText: {fileID: 645822301}
+  DepreciationText: {fileID: 1587596112}
+  LaborcostText: {fileID: 1368324581}
+  electricitycostText: {fileID: 982344148}
+  totalcostText: {fileID: 355935355}
+  econtimeText: {fileID: 2019074473}
+  costperminText: {fileID: 1613732388}
+  runtime: 0
+  starttime: 0
+  recordtime: 0
+  deltat: 0
+  nframes: 0
+  npoints: 0
+  frameselapsed: 0
+  timelapsed: 0
+  framerate: 0
+  runtimeprev: 0
+  depreciation: 0
+  Laborcost: 0
+  impfactor: 0
+  feedfactor: 0
+  UVfactor: 0
+  F0: 0
+  tempval: 0
+  NewNaOHconsumed: 0
+  NaOHconc: 0
+  econtime: 0
+  resettime: 0
+  costpermin: 0
+  CWConsumed: 0
+  HWConsumed: 0
+  impellerbuttonpushed: 0
+  UVbuttonpushed: 0
+  feedbuttonpushed: 0
+--- !u!222 &1587596114
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587596111}
+  m_CullTransparentMesh: 0
+--- !u!224 &1587596115
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587596111}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000006400255, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_Children: []
+  m_Father: {fileID: 2114774062}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1, y: -1.015}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1593388060 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0,
@@ -16194,6 +17050,157 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49a7991af9bf9424fae2c1c2976358cc, type: 3}
+--- !u!1 &1613732387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1613732391}
+  - component: {fileID: 1613732390}
+  - component: {fileID: 1613732388}
+  - component: {fileID: 1613732389}
+  m_Layer: 0
+  m_Name: costpermin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1613732388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613732387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Cost/min ($):'
+--- !u!114 &1613732389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613732387}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaOHcost: 0
+  ColdFluidCost: 0
+  NaOHconsumed: 0
+  pHvalue: 7
+  pumpingcost: 0
+  impellercost: 0
+  UVcost: 0
+  electricitycost: 0
+  totalcost: 0
+  ColdFluidFlowRateVal: 0
+  ColdFluidInputTempVal: 0
+  HotFluidOutTempVal: 0
+  costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
+  feed_script: {fileID: 945400006}
+  pHsettings: {fileID: 902396148}
+  ColdFluidFlowRate: {fileID: 2101708703}
+  HotFluidFlowRate: {fileID: 947648005}
+  HotFluidOutTemp: {fileID: 1513162097}
+  ColdFluidInputTemp: {fileID: 400173357}
+  impeller_script: {fileID: 862798591}
+  ResetEconButton: {fileID: 1107706842}
+  yellow: {fileID: 2100000, guid: ea1be425a90665f4ea4578e3e8866d1f, type: 2}
+  stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
+  NaOHcostText: {fileID: 1689269135}
+  ColdFluidCostText: {fileID: 645822301}
+  DepreciationText: {fileID: 1587596112}
+  LaborcostText: {fileID: 1368324581}
+  electricitycostText: {fileID: 982344148}
+  totalcostText: {fileID: 1613732388}
+  econtimeText: {fileID: 2019074473}
+  costperminText: {fileID: 1613732388}
+  runtime: 0
+  starttime: 0
+  recordtime: 0
+  deltat: 0
+  nframes: 0
+  npoints: 0
+  frameselapsed: 0
+  timelapsed: 0
+  framerate: 0
+  runtimeprev: 0
+  depreciation: 0
+  Laborcost: 0
+  impfactor: 0
+  feedfactor: 0
+  UVfactor: 0
+  F0: 0
+  tempval: 0
+  NewNaOHconsumed: 0
+  NaOHconc: 0
+  econtime: 0
+  resettime: 0
+  costpermin: 0
+  CWConsumed: 0
+  HWConsumed: 0
+  impellerbuttonpushed: 0
+  UVbuttonpushed: 0
+  feedbuttonpushed: 0
+--- !u!222 &1613732390
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613732387}
+  m_CullTransparentMesh: 0
+--- !u!224 &1613732391
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613732387}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000006400255, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_Children: []
+  m_Father: {fileID: 2114774062}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1, y: -2.49}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1628038470
 GameObject:
   m_ObjectHideFlags: 0
@@ -16598,6 +17605,157 @@ Transform:
   m_Father: {fileID: 1998137153}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1689269134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1689269138}
+  - component: {fileID: 1689269137}
+  - component: {fileID: 1689269135}
+  - component: {fileID: 1689269136}
+  m_Layer: 0
+  m_Name: NaOH cost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1689269135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689269134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 60
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'NaOH cost ($):'
+--- !u!114 &1689269136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689269134}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaOHcost: 0
+  ColdFluidCost: 0
+  NaOHconsumed: 0
+  pHvalue: 7
+  pumpingcost: 0
+  impellercost: 0
+  UVcost: 0
+  electricitycost: 0
+  totalcost: 0
+  ColdFluidFlowRateVal: 0
+  ColdFluidInputTempVal: 0
+  HotFluidOutTempVal: 0
+  costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
+  feed_script: {fileID: 945400006}
+  pHsettings: {fileID: 902396148}
+  ColdFluidFlowRate: {fileID: 2101708703}
+  HotFluidFlowRate: {fileID: 167534929}
+  HotFluidOutTemp: {fileID: 1513162097}
+  ColdFluidInputTemp: {fileID: 432999788}
+  impeller_script: {fileID: 862798591}
+  ResetEconButton: {fileID: 1107706842}
+  yellow: {fileID: 2100000, guid: ea1be425a90665f4ea4578e3e8866d1f, type: 2}
+  stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
+  NaOHcostText: {fileID: 1689269135}
+  ColdFluidCostText: {fileID: 645822301}
+  DepreciationText: {fileID: 1587596112}
+  LaborcostText: {fileID: 1368324581}
+  electricitycostText: {fileID: 982344148}
+  totalcostText: {fileID: 355935355}
+  econtimeText: {fileID: 2019074473}
+  costperminText: {fileID: 1613732388}
+  runtime: 0
+  starttime: 0
+  recordtime: 0
+  deltat: 0
+  nframes: 0
+  npoints: 0
+  frameselapsed: 0
+  timelapsed: 0
+  framerate: 0
+  runtimeprev: 0
+  depreciation: 0
+  Laborcost: 0
+  impfactor: 0
+  feedfactor: 0
+  UVfactor: 0
+  F0: 0
+  tempval: 0
+  NewNaOHconsumed: 0
+  NaOHconc: 0
+  econtime: 0
+  resettime: 0
+  costpermin: 0
+  CWConsumed: 0
+  HWConsumed: 0
+  impellerbuttonpushed: 0
+  UVbuttonpushed: 0
+  feedbuttonpushed: 0
+--- !u!222 &1689269137
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689269134}
+  m_CullTransparentMesh: 0
+--- !u!224 &1689269138
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689269134}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000006400255, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_Children: []
+  m_Father: {fileID: 2114774062}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1, y: -0.25}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1691366921
 GameObject:
   m_ObjectHideFlags: 0
@@ -16773,7 +17931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1704179014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16781,7 +17939,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704179013}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
   m_Name: 
@@ -16799,6 +17957,7 @@ MonoBehaviour:
   ColdFluidInputTempVal: 0
   HotFluidOutTempVal: 0
   costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
   feed_script: {fileID: 945400006}
   pHsettings: {fileID: 902396148}
   ColdFluidFlowRate: {fileID: 2101708703}
@@ -18152,6 +19311,109 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1810674784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810674785}
+  - component: {fileID: 1810674786}
+  m_Layer: 0
+  m_Name: Economy View Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1810674785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810674784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 873930264}
+  m_Father: {fileID: 1979896409}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1810674786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810674784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaOHcost: 0
+  ColdFluidCost: 0
+  NaOHconsumed: 0
+  pHvalue: 7
+  pumpingcost: 0
+  impellercost: 0
+  UVcost: 0
+  electricitycost: 0
+  totalcost: 0
+  ColdFluidFlowRateVal: 0
+  ColdFluidInputTempVal: 0
+  HotFluidOutTempVal: 0
+  costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
+  feed_script: {fileID: 945400006}
+  pHsettings: {fileID: 902396148}
+  ColdFluidFlowRate: {fileID: 2101708703}
+  HotFluidFlowRate: {fileID: 167534929}
+  HotFluidOutTemp: {fileID: 1513162097}
+  ColdFluidInputTemp: {fileID: 432999788}
+  impeller_script: {fileID: 862798591}
+  ResetEconButton: {fileID: 1107706842}
+  yellow: {fileID: 2100000, guid: ea1be425a90665f4ea4578e3e8866d1f, type: 2}
+  stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
+  NaOHcostText: {fileID: 1689269135}
+  ColdFluidCostText: {fileID: 645822301}
+  DepreciationText: {fileID: 1587596112}
+  LaborcostText: {fileID: 1368324581}
+  electricitycostText: {fileID: 982344148}
+  totalcostText: {fileID: 355935355}
+  econtimeText: {fileID: 2019074473}
+  costperminText: {fileID: 1613732388}
+  runtime: 0
+  starttime: 0
+  recordtime: 0
+  deltat: 0
+  nframes: 0
+  npoints: 0
+  frameselapsed: 0
+  timelapsed: 0
+  framerate: 0
+  runtimeprev: 0
+  depreciation: 0
+  Laborcost: 0
+  impfactor: 0
+  feedfactor: 0
+  UVfactor: 0
+  F0: 0
+  tempval: 0
+  NewNaOHconsumed: 0
+  NaOHconc: 0
+  econtime: 0
+  resettime: 0
+  costpermin: 0
+  CWConsumed: 0
+  HWConsumed: 0
+  impellerbuttonpushed: 0
+  UVbuttonpushed: 0
+  feedbuttonpushed: 0
 --- !u!4 &1821900158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: e2721f2a159f19246ae0e7e7dec9b3a7,
@@ -18958,6 +20220,7 @@ Transform:
   m_Children:
   - {fileID: 2087285416}
   - {fileID: 1423190413}
+  - {fileID: 1810674785}
   m_Father: {fileID: 266047185}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19133,7 +20396,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984468483}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
   m_Name: 
@@ -19151,6 +20414,7 @@ MonoBehaviour:
   ColdFluidInputTempVal: 0
   HotFluidOutTempVal: 0
   costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
   feed_script: {fileID: 945400006}
   pHsettings: {fileID: 902396148}
   ColdFluidFlowRate: {fileID: 2101708703}
@@ -19325,7 +20589,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987524418}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
   m_Name: 
@@ -19343,6 +20607,7 @@ MonoBehaviour:
   ColdFluidInputTempVal: 0
   HotFluidOutTempVal: 0
   costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
   feed_script: {fileID: 945400006}
   pHsettings: {fileID: 902396148}
   ColdFluidFlowRate: {fileID: 2101708703}
@@ -19732,7 +20997,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017671802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
   m_Name: 
@@ -19750,6 +21015,7 @@ MonoBehaviour:
   ColdFluidInputTempVal: 0
   HotFluidOutTempVal: 0
   costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
   feed_script: {fileID: 945400006}
   pHsettings: {fileID: 902396148}
   ColdFluidFlowRate: {fileID: 2101708703}
@@ -19795,6 +21061,157 @@ MonoBehaviour:
   impellerbuttonpushed: 0
   UVbuttonpushed: 0
   feedbuttonpushed: 0
+--- !u!1 &2019074472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2019074476}
+  - component: {fileID: 2019074475}
+  - component: {fileID: 2019074473}
+  - component: {fileID: 2019074474}
+  m_Layer: 0
+  m_Name: EconTime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2019074473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019074472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Econ. time (s):'
+--- !u!114 &2019074474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019074472}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NaOHcost: 0
+  ColdFluidCost: 0
+  NaOHconsumed: 0
+  pHvalue: 7
+  pumpingcost: 0
+  impellercost: 0
+  UVcost: 0
+  electricitycost: 0
+  totalcost: 0
+  ColdFluidFlowRateVal: 0
+  ColdFluidInputTempVal: 0
+  HotFluidOutTempVal: 0
+  costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
+  feed_script: {fileID: 945400006}
+  pHsettings: {fileID: 902396148}
+  ColdFluidFlowRate: {fileID: 2101708703}
+  HotFluidFlowRate: {fileID: 947648005}
+  HotFluidOutTemp: {fileID: 1513162097}
+  ColdFluidInputTemp: {fileID: 400173357}
+  impeller_script: {fileID: 862798591}
+  ResetEconButton: {fileID: 1107706842}
+  yellow: {fileID: 2100000, guid: ea1be425a90665f4ea4578e3e8866d1f, type: 2}
+  stairprops: {fileID: 2100000, guid: 88e394724e4d5b946a0a1ceda2f1d013, type: 2}
+  NaOHcostText: {fileID: 1689269135}
+  ColdFluidCostText: {fileID: 645822301}
+  DepreciationText: {fileID: 1587596112}
+  LaborcostText: {fileID: 1368324581}
+  electricitycostText: {fileID: 982344148}
+  totalcostText: {fileID: 2019074473}
+  econtimeText: {fileID: 2019074473}
+  costperminText: {fileID: 1613732388}
+  runtime: 0
+  starttime: 0
+  recordtime: 0
+  deltat: 0
+  nframes: 0
+  npoints: 0
+  frameselapsed: 0
+  timelapsed: 0
+  framerate: 0
+  runtimeprev: 0
+  depreciation: 0
+  Laborcost: 0
+  impfactor: 0
+  feedfactor: 0
+  UVfactor: 0
+  F0: 0
+  tempval: 0
+  NewNaOHconsumed: 0
+  NaOHconc: 0
+  econtime: 0
+  resettime: 0
+  costpermin: 0
+  CWConsumed: 0
+  HWConsumed: 0
+  impellerbuttonpushed: 0
+  UVbuttonpushed: 0
+  feedbuttonpushed: 0
+--- !u!222 &2019074475
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019074472}
+  m_CullTransparentMesh: 0
+--- !u!224 &2019074476
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019074472}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000006400255, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_Children: []
+  m_Father: {fileID: 2114774062}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1, y: -2.09}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2020683070
 GameObject:
   m_ObjectHideFlags: 0
@@ -20216,7 +21633,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055695941}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e2c0dd2fa5b95c47b0730c5b7dfdf86, type: 3}
   m_Name: 
@@ -20234,6 +21651,7 @@ MonoBehaviour:
   ColdFluidInputTempVal: 0
   HotFluidOutTempVal: 0
   costperkg: 0.000056000000768108293
+  econViewWindow: {fileID: 873930263}
   feed_script: {fileID: 945400006}
   pHsettings: {fileID: 902396148}
   ColdFluidFlowRate: {fileID: 2101708703}
@@ -22666,6 +24084,113 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113402527}
   m_CullTransparentMesh: 0
+--- !u!1 &2114774061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2114774062}
+  - component: {fileID: 2114774065}
+  - component: {fileID: 2114774064}
+  - component: {fileID: 2114774063}
+  m_Layer: 0
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2114774062
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114774061}
+  m_LocalRotation: {x: 0.51460683, y: -0.47017488, z: 0.5024834, w: 0.5114937}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1689269138}
+  - {fileID: 645822304}
+  - {fileID: 1587596115}
+  - {fileID: 1368324584}
+  - {fileID: 982344151}
+  - {fileID: 2019074476}
+  - {fileID: 1613732391}
+  - {fileID: 355935353}
+  m_Father: {fileID: 873930264}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 87.37, y: 52.035, z: 138.972}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.28, y: 0.38}
+  m_SizeDelta: {x: 10, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2114774063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114774061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &2114774064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114774061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 10
+  m_PresetInfoIsWorld: 1
+--- !u!223 &2114774065
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114774061}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!4 &2114907068 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 481374, guid: 058bbd43bededbe4fa0444c56e416734,
@@ -22791,12 +24316,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2124385364}
   m_Layer: 5
-  m_Name: HUD
+  m_Name: Econ HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2124385364
 RectTransform:
   m_ObjectHideFlags: 0
