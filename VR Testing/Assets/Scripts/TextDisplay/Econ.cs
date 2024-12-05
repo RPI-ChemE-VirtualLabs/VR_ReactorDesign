@@ -19,11 +19,12 @@ public class Econ : MonoBehaviour
     public double ColdFluidFlowRateVal; //kg/s
     public double ColdFluidInputTempVal; //kg/s
     public double HotFluidOutTempVal; //K
+    public double HotFluidInputTempVal; //K
 
     // public float ColdFluidInletTemp; // K
     public double costperkg = (0.056f/1000f); // cost of chilling water per kg
 
-    // GameObject containing the economy window background and canvas.
+    // GameObject containing the economy window background and canvas./
     [SerializeField] GameObject econViewWindow;
 
     public GameObject feed_script; // script
@@ -32,6 +33,7 @@ public class Econ : MonoBehaviour
     public GameObject HotFluidFlowRate; // script
     public GameObject HotFluidOutTemp; // script
     public GameObject ColdFluidInputTemp;  //script
+    public GameObject HotFluidInputTemp;  //script
     public GameObject impeller_script;  //script
     public GameObject ResetEconButton;
 
@@ -123,6 +125,7 @@ public class Econ : MonoBehaviour
         econtime = runtime - resettime;
         ResetEconButton.GetComponent<MeshRenderer>().material = stairprops;
 
+        HotFluidInputTempVal = HotFluidInputTemp.GetComponent<HotFluidInputTemp>().HotFluidInputTempVal;
         HotFluidOutTempVal = HotFluidOutTemp.GetComponent<HotFluidOutTemp>().HotFluidOutputVal;
        
         pHvalue = pHsettings.GetComponent<pHsettings>().pHvalue;
@@ -229,7 +232,6 @@ public class Econ : MonoBehaviour
         ColdFluidCostText.GetComponent<Text>().text = "Chilling Water Cost ($): " + System.Math.Round(ColdFluidCost, 3);
 
         
-
         CWConsumed = ColdFluidFlowRate.GetComponent<ColdFluidFlowRate>().CWconsumed;
         HWConsumed = HotFluidFlowRate.GetComponent<HotFluidFlowRate>().HWconsumed;
 
@@ -271,5 +273,81 @@ public class Econ : MonoBehaviour
 		NewNaOHconsumed = 0;
 		econtime = 0;
 		resettime = runtime;
-	}
+
+        Invoke("ExportEcon", 10);
+    }
+
+    public void ExportEcon()
+    {
+        // Create filestream
+        Debug.Log("PSM: initiating separation record writen");
+
+        // TODO: Move these values outside of this function to properly handle file continuity.
+        System.DateTime dt = System.DateTime.Now;
+        string timestamp = dt.Year.ToString() + '-' + dt.Month.ToString() + '-' + dt.Day.ToString() + '-' +
+                           dt.Hour + dt.Minute + dt.Second;
+        string filename = "reactor-econ-" + timestamp + ".csv";
+        Debug.Log(filename);
+
+        System.IO.StreamWriter fs = new System.IO.StreamWriter(filename);
+
+        // Write CSV header.
+        string[] parameters = {
+            "Time", // HH:MM:SS
+            "pH",
+            "Feed Flow Rate",
+            "Cold Fluid Flow Rate",
+            "Labor Cost",
+            "Deprecation",
+            "Cold Fluid Cost",
+            "Pumping Cost",
+            "Impeller Cost",
+            "UV Cost", 
+            "Electricity Cost",
+            "NaOH Cost",
+            "Total Cost",
+            "New NaOH Consumed",
+            "Tc-In",
+            "Th-In",
+            "Tc-Out",
+            "Th-Out",
+            "CA-Out",
+        };
+
+        string header = "";
+        foreach(string val in parameters)
+		{
+            header += val + ',';
+		}
+        fs.WriteLine(header);
+
+        string line = "";
+
+        feed_script fscr = feed_script.GetComponent<feed_script>();
+
+        line += System.DateTime.Now + ",";
+        line += fscr.pHvalue + ",";
+        line += fscr.F0 + ",";
+        line += ColdFluidFlowRateVal.ToString() + ',';
+        line += Laborcost.ToString() + ',';
+        line += depreciation.ToString() + ',';
+        line += ColdFluidCost.ToString() + ',';
+        line += pumpingcost.ToString() + ',';
+        line += impellercost.ToString() + ',';
+        line += UVcost.ToString() + ',';
+        line += electricitycost.ToString() + ',';
+        line += NaOHcost.ToString() + ',';
+        line += totalcost.ToString() + ',';
+        line += NewNaOHconsumed.ToString() + ',';
+        line += ColdFluidInputTempVal.ToString() + ',';
+        line += HotFluidInputTempVal.ToString() + ',';
+        line += ColdFluidInputTempVal.ToString() + ',';
+        line += HotFluidOutTempVal.ToString() + ',';
+        line += fscr.CA.ToString() + ',';
+
+        fs.WriteLine(line);
+
+        // Close filestream
+        fs.Close();
+    }
 }

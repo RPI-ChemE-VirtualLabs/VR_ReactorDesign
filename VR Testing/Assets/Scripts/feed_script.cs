@@ -64,7 +64,7 @@ public class feed_script : MonoBehaviour
 
     // pH-related variables.
     public float pHvalue = 7f;
-    private float m_NaOHConsumed = 0.0f;
+    public float NaOHConsumed = 0.0f;
     private float m_NaOHConcentration = 0.0f;
 
     //  # times Record button pushed. 0 = none; 1 = recording; 2 = stop recording, reset counter to 0
@@ -200,7 +200,7 @@ public class feed_script : MonoBehaviour
 
     private void CalculatePH()
 	{
-        m_NaOHConsumed += m_NaOHConcentration * 1000f * .04f * Time.fixedDeltaTime * (F0 / 60);
+        NaOHConsumed += m_NaOHConcentration * 1000f * .04f * Time.fixedDeltaTime * (F0 / 60);
         switch(pHvalue)
 		{
             case 7:
