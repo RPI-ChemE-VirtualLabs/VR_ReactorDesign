@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*** DEPRECATED ***/
 public class HotFluidOutTemp : MonoBehaviour
 {
     public HotFluidInputTemp HotFluidInputTempVal;

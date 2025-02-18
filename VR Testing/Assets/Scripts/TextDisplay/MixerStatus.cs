@@ -19,7 +19,8 @@ public class MixerStatus : MonoBehaviour
     [SerializeField]
     private TextMeshPro m_fluidTempDisplay;
 
-    public HotFluidOutTemp hfot;
+    [SerializeField]
+    private FluidFlow m_fluidFlow;
 
     [Header("UV Status")]
 
@@ -63,9 +64,10 @@ public class MixerStatus : MonoBehaviour
     private void DisplayFluidTemp()
     {
         string txt = "";
-        txt += "Hot fluid output temp: " + hfot.HotFluidOutputVal + "\n";
-        txt += "Cold fluid input temp: " + hfot.ColdFluidInputTempVal + "\n";
-        txt += "Hot fluid input temp: " + hfot.ColdFluidInputTempVal + "\n";
-        txt += "Cold fluid input temp: " + hfot.ColdFluidInputTempVal + "\n";
+        txt += "Hot fluid input temp: " + m_fluidFlow.HotFluidFlowRate + "\n";
+        txt += "Hot fluid output temp: " + m_fluidFlow.HotFluidOutputVal + "\n";
+        txt += "Cold fluid input temp: " + m_fluidFlow.ColdFluidInputTemp+ "\n";
+        txt += "Cold fluid output temp: " + m_fluidFlow.ColdFluidOutputVal+ "\n";
+        m_fluidTempDisplay.text = txt;
     }
 }
