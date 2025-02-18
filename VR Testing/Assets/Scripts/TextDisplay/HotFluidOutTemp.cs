@@ -11,10 +11,10 @@ public class HotFluidOutTemp : MonoBehaviour
     public HotFluidFlowRate HotFluidFlowRateVal;
     public ColdFluidFlowRate ColdFluidFlowRateVal;
 
-    private double HotFluidInputTempValue = 0f;
-    private double ColdFluidInputTempValue = 0f;
-    private double HotFluidFlowRateValue = 0f;
-    private double ColdFluidFlowRateValue = 0f;
+    public double HotFluidInputTempValue { get; protected set; } = 0f;
+    public double ColdFluidInputTempValue { get; protected set; }= 0f;
+    public double HotFluidFlowRateValue { get; protected set; } = 0f;
+    public double ColdFluidFlowRateValue { get; protected set; }= 0f;
 
     public float HotFluidOutputVal;
    

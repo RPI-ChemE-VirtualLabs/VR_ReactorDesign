@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,7 +50,10 @@ public class Econ : MonoBehaviour
     public Text econtimeText;
     public Text costperminText;
 
-    
+    // Number of seconds between econ entries.
+    private float m_exportInterval = 30;
+    // Filestream pointing to new file.
+    private System.IO.StreamWriter fs;
 
     public float runtime = 0.00000f;
     public float starttime = 0.00000f;
@@ -80,7 +84,6 @@ public class Econ : MonoBehaviour
     public float econtime =0;
     public float resettime = 0;
     public double costpermin = 0;
-    
 
     public double CWConsumed;
     public double HWConsumed;
@@ -89,11 +92,20 @@ public class Econ : MonoBehaviour
     public bool UVbuttonpushed = false;
     public bool feedbuttonpushed = false;
 
+    // Reference to external economy view object.
+    [SerializeField] private GameObject m_econView;
+    // Text content.
+    [SerializeField] private string m_econContent;
+
 	private void Awake()
 	{
+        InitExportEcon();
+        InvokeRepeating("WriteEconLine", 0, 30);
         // Assign window toggle to menu button.
         VR_CharacterController.menuDown += ToggleEconWindow;
         VR_CharacterController.menuDownTriple += ResetEcon;
+
+        //m_econView = GameObject.Find("Econ View Window");
 	}
 
 	// Start is called before the first frame update
@@ -138,35 +150,17 @@ public class Econ : MonoBehaviour
 
 
         NaOHcost = NewNaOHconsumed*0.45f;  // based on current NaOH price of 45c per kg
-        NaOHcostText.GetComponent<Text>().text = "NaOH Cost ($): " + System.Math.Round(NaOHcost, 3);
+        //NaOHcostText.GetComponent<Text>().text = "NaOH Cost ($): " + System.Math.Round(NaOHcost, 3);
+        m_econContent = "NaOH Cost ($): " + System.Math.Round(NaOHcost, 3) + "\n";
 
         impellerbuttonpushed = impeller_script.GetComponent<impeller_script>().impellerbuttonpushed;
         UVbuttonpushed = feed_script.GetComponent<feed_script>().UVbuttonpushed;
         feedbuttonpushed = feed_script.GetComponent<feed_script>().feedOn;
 
-        if (impellerbuttonpushed == true)
-        {
-            impfactor = 1;
-        
-        }
-        else { impfactor = 0; }
-
-
-        if (feedbuttonpushed == true)
-        {
-            feedfactor = 1;
-
-        }
-        else {feedfactor = 0; }
-
-
-        if (UVbuttonpushed == true)
-        {
-            UVfactor = 1;
-
-        }
-        else {UVfactor = 0; }
-
+        // Modify factors for process statuses.
+        impfactor = impellerbuttonpushed ? 1 : 0;
+        feedfactor = feedbuttonpushed ? 1 : 0;
+        UVfactor = UVbuttonpushed ? 1 : 0;
 
         if (pHvalue == 7)
         {
@@ -174,63 +168,53 @@ public class Econ : MonoBehaviour
             {
                 depreciation = depreciation + 6.19e-5f * (runtime - runtimeprev); // $/s
             }
-
             else
             {
                 tempval = (float)HotFluidOutTempVal;
                 depreciation = depreciation + 6.19e-5f * 25f * (runtime - runtimeprev)*Mathf.Exp((tempval-330f)/10f); // $/s
-                
             }
         }
-
         if (pHvalue == 10)
-
-
+        {
             if (HotFluidOutTempVal < 330.1)
             {
-            depreciation = depreciation + 0.00062f * (runtime - runtimeprev); // $/s
-
+                depreciation = depreciation + 0.00062f * (runtime - runtimeprev); // $/s
             }
-
             else
             {
                 tempval = (float)HotFluidOutTempVal;
-                depreciation = depreciation + 0.00062f * 5f*(runtime - runtimeprev) * Mathf.Exp((tempval - 330f) / 10f); // $/s
-                
+                depreciation = depreciation + 0.00062f * 5f * (runtime - runtimeprev) * Mathf.Exp((tempval - 330f) / 10f); // $/s
+
 
             }
-
-
-
+        }
         if (pHvalue == 12)
         {
-
             if (HotFluidOutTempVal < 330.1)
             {
                 depreciation = depreciation + 0.00495f * (runtime - runtimeprev); // $/s
             }
-
             else
             {
                 tempval = (float)HotFluidOutTempVal;
                 depreciation = depreciation + 0.00495f * (runtime - runtimeprev) * Mathf.Exp((tempval - 330f) / 10f); // $/s
-                
             }    
         }
 
-        DepreciationText.GetComponent<Text>().text = "Depreciation Cost ($): " + System.Math.Round(depreciation, 3);
+        // DepreciationText.GetComponent<Text>().text = "Depreciation Cost ($): " + System.Math.Round(depreciation, 3);
+        m_econContent += "Depreciation Cost ($): " + System.Math.Round(depreciation, 3) + "\n";
 
         Laborcost = Laborcost + 0.0019f* (runtime - runtimeprev); //$/s
-        Debug.Log("test");
-        LaborcostText.GetComponent<Text>().text = "Labor Cost ($): " + System.Math.Round(Laborcost, 3);
+        //LaborcostText.GetComponent<Text>().text = "Labor Cost ($): " + System.Math.Round(Laborcost, 3);
+        m_econContent += "Labor Cost ($): " + System.Math.Round(Laborcost, 3) + "\n";
 
         ColdFluidFlowRateVal = ColdFluidFlowRate.GetComponent<ColdFluidFlowRate>().ColdFluidFlowRateVal; // in kg/min
         ColdFluidInputTempVal = ColdFluidInputTemp.GetComponent<ColdFluidInputTemp>().ColdFluidInputTempVal;
         costperkg = 0.000056 + ((20 - ColdFluidInputTempVal + 273) * 0.0175)/20000; 
 
         ColdFluidCost = ColdFluidCost + feedfactor*(lastframetime * costperkg * ColdFluidFlowRateVal/60d);
-        ColdFluidCostText.GetComponent<Text>().text = "Chilling Water Cost ($): " + System.Math.Round(ColdFluidCost, 3);
-
+        //ColdFluidCostText.GetComponent<Text>().text = "Chilling Water Cost ($): " + System.Math.Round(ColdFluidCost, 3);
+        m_econContent += "Chilling Water Cost ($): " + System.Math.Round(ColdFluidCost, 3) + "\n";
         
         CWConsumed = ColdFluidFlowRate.GetComponent<ColdFluidFlowRate>().CWconsumed;
         HWConsumed = HotFluidFlowRate.GetComponent<HotFluidFlowRate>().HWconsumed;
@@ -243,12 +227,21 @@ public class Econ : MonoBehaviour
 
         totalcost = electricitycost + depreciation + Laborcost + NaOHcost + ColdFluidCost;
 
-        electricitycostText.GetComponent<Text>().text = "Electricity Cost ($): " + System.Math.Round(electricitycost, 3);
-        totalcostText.GetComponent<Text>().text = "Total Cost ($): " + System.Math.Round(totalcost, 3);
-        econtimeText.GetComponent<Text>().text = "Econ. time (s): " + System.Math.Round(econtime, 3);
+        //electricitycostText.GetComponent<Text>().text = "Electricity Cost ($): " + System.Math.Round(electricitycost, 3);
+        //totalcostText.GetComponent<Text>().text = "Total Cost ($): " + System.Math.Round(totalcost, 3);
+        //econtimeText.GetComponent<Text>().text = "Econ. time (s): " + System.Math.Round(econtime, 3);
+        m_econContent += "Electricity Cost ($): " + System.Math.Round(electricitycost, 3) + "\n";
+        m_econContent += "Total Cost ($): " + System.Math.Round(totalcost, 3) + "\n";
+        m_econContent += "Econ. time (s): " + System.Math.Round(econtime, 3) + "\n";
 
         costpermin = 60*totalcost / econtime; // $ per minute
-        costperminText.GetComponent<Text>().text = "Cost ($/min): " + System.Math.Round(costpermin, 3);
+        //costperminText.GetComponent<Text>().text = "Cost ($/min): " + System.Math.Round(costpermin, 3);
+        m_econContent += "Cost ($/min): " + System.Math.Round(costpermin, 3) + "\n";
+
+        // Apply text to economy view.
+        TextMeshProUGUI tm;
+        if(m_econView.TryGetComponent<TextMeshProUGUI>(out tm))
+           tm.text = m_econContent;
     }
 
     // Toggles the visibility of the economy view window.
@@ -277,19 +270,15 @@ public class Econ : MonoBehaviour
         Invoke("ExportEcon", 10);
     }
 
-    public void ExportEcon()
+    // Create a new econ export file for this session.
+    public void InitExportEcon()
     {
-        // Create filestream
-        Debug.Log("PSM: initiating separation record writen");
-
-        // TODO: Move these values outside of this function to properly handle file continuity.
         System.DateTime dt = System.DateTime.Now;
         string timestamp = dt.Year.ToString() + '-' + dt.Month.ToString() + '-' + dt.Day.ToString() + '-' +
                            dt.Hour + dt.Minute + dt.Second;
         string filename = "reactor-econ-" + timestamp + ".csv";
-        Debug.Log(filename);
 
-        System.IO.StreamWriter fs = new System.IO.StreamWriter(filename);
+        fs = new System.IO.StreamWriter(filename);
 
         // Write CSV header.
         string[] parameters = {
@@ -320,12 +309,15 @@ public class Econ : MonoBehaviour
             header += val + ',';
 		}
         fs.WriteLine(header);
+    }
 
+    private void WriteEconLine()
+    {
         string line = "";
 
         feed_script fscr = feed_script.GetComponent<feed_script>();
 
-        line += System.DateTime.Now + ",";
+        line += timelapsed + ",";
         line += fscr.pHvalue + ",";
         line += fscr.F0 + ",";
         line += ColdFluidFlowRateVal.ToString() + ',';
@@ -346,8 +338,10 @@ public class Econ : MonoBehaviour
         line += fscr.CA.ToString() + ',';
 
         fs.WriteLine(line);
+    }
 
-        // Close filestream
+    private void OnDestroy()
+    {
         fs.Close();
     }
 }

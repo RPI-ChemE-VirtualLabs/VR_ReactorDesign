@@ -24,11 +24,13 @@ public class VRControllerDebug : MonoBehaviour
 
     private Camera mainCam;
     private GameObject currentSelection;
+    private EconView ev;
     void Start()
     {
         Debug.LogWarning("Using debug character controller.");
         control = GetComponent<CharacterController>();
         mainCam = transform.GetChild(0).GetComponent<Camera>();
+        ev = GameObject.Find("Econ View Window").GetComponent<EconView>();
         Cursor.lockState = CursorLockMode.Locked;
         usingDebug = true;
     }
@@ -50,6 +52,14 @@ public class VRControllerDebug : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
             OnClick();
 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (ev.windowActive)
+                ev.OnClose();
+            else
+                ev.OnOpen();
+        }
+
         if (Input.GetKeyDown(KeyCode.E) && debugTriggerDown != null)
             debugTriggerDown(1f);
         else if (Input.GetKeyUp(KeyCode.E) && debugTriggerUp != null)
@@ -59,7 +69,7 @@ public class VRControllerDebug : MonoBehaviour
     private void OnMovement(Vector2 input)
 	{
         Vector3 mv = new Vector3(input.x, 0, input.y);
-        mv = transform.localRotation * mv;
+        mv = (mainCam.transform.localRotation * Quaternion.Euler(Vector3.up * 90)) * mv;
         control.SimpleMove(mv * speed);
 	}
 
@@ -70,7 +80,7 @@ public class VRControllerDebug : MonoBehaviour
 	{
         yaw += mouseInput.x;
         pitch -= mouseInput.y;
-        transform.eulerAngles = new Vector3(pitch, yaw, 0);
+        mainCam.transform.eulerAngles = new Vector3(pitch, yaw, 0);
 	}
 
     private void OnClick()
