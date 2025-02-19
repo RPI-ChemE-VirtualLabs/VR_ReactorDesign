@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class HotFluidInputTemp : MonoBehaviour
 {
-    public Tuner HotFluidTuner;
-    public Text HotFluidInputTempText;
+    //public Tuner HotFluidTuner;
+    //public Text HotFluidInputTempText;
+    [SerializeField] private VRKeypad kp;
     [SerializeField] private float Value;
     public double HotFluidInputTempVal;
 
@@ -20,7 +21,7 @@ public class HotFluidInputTemp : MonoBehaviour
     void Update()
     {
 		//Value = HotFluidTuner.GetComponent<Tuner>().Percentage;
-		HotFluidInputTempVal = 353 - Value * 100; //Converting percentage of tuner to actual temperature
-		HotFluidInputTempText.GetComponent<Text>().text = "Hot Fluid Inlet Temp.: " + System.Math.Round(HotFluidInputTempVal,2) + " K"; //Output to display or HUD
+		HotFluidInputTempVal = kp.currentValue; //Converting percentage of tuner to actual temperature
+		//HotFluidInputTempText.GetComponent<Text>().text = "Hot Fluid Inlet Temp.: " + System.Math.Round(HotFluidInputTempVal,2) + " K"; //Output to display or HUD
     }
 }

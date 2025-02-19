@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class ColdFluidInputTemp : MonoBehaviour
 {
-    public Tuner ColdFluidTuner;
-    public Text ColdFluidInputTempText;
+    //public Tuner ColdFluidTuner;
+    //public Text ColdFluidInputTempText;
+    [SerializeField] private VRKeypad kp;
     private float Value;
     public double ColdFluidInputTempVal;
     
@@ -24,13 +25,8 @@ public class ColdFluidInputTemp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ColdFluidTuner)
-        {
-            Value = ColdFluidTuner.GetComponent<Tuner>().Percentage;
-            ColdFluidInputTempVal = 273f + Value * (20); //Converting percentage of tuner to actual temperature
-            ColdFluidInputTempText.GetComponent<Text>().text = "Cold Fluid Inlet Temp.: " + System.Math.Round(ColdFluidInputTempVal,2) + " K"; //Output to display or HUD
-        }
-
+        ColdFluidInputTempVal = kp.currentValue; //Converting percentage of tuner to actual temperature
+        /*
         ResetCFTButton.GetComponent<MeshRenderer>().material = stairprops;
 
         if (Input.GetMouseButtonDown(0))
@@ -58,7 +54,7 @@ public class ColdFluidInputTemp : MonoBehaviour
         }
 
         ResetCFTButton.GetComponent<MeshRenderer>().material = stairprops;
-
+        */
         
 
 

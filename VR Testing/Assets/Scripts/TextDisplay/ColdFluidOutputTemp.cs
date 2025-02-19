@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ColdFluidOutputTemp : MonoBehaviour
 {
     public HotFluidInputTemp HotFluidInputTempVal;
-    public Text ColdFluidOutputText;
+    //public Text ColdFluidOutputText;
     public ColdFluidInputTemp ColdFluidInputTempVal;
     public HotFluidFlowRate HotFluidFlowRateVal;
     public ColdFluidFlowRate ColdFluidFlowRateVal;
@@ -39,7 +39,7 @@ public class ColdFluidOutputTemp : MonoBehaviour
 
             ColdFluidOutputVal = HotFluidOutTemp.GetComponent<HotFluidOutTemp>().Tcout;  //  in m3/min
                                                                                             // HotFluidInputTempValue * HotFluidFlowRateValue + ColdFluidInputTempValue * ColdFluidFlowRateValue;//placeholder function
-            ColdFluidOutputText.GetComponent<Text>().text = "Cold Fluid Outlet Temp.: " + System.Math.Round(ColdFluidOutputVal,2) + " K";
+            //ColdFluidOutputText.GetComponent<Text>().text = "Cold Fluid Outlet Temp.: " + System.Math.Round(ColdFluidOutputVal,2) + " K";
         }
     }
 }
