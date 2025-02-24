@@ -30,10 +30,7 @@ public class feed_script : MonoBehaviour
     public string mixing;
 
     //public string feedbuttoncolor;
-    public float rateconstant;
     public float GetRuntime() { return runtime; }
-    public float k;
-    public float multiplier = 0.01f;
 
     public float runtime = 0.00000f;
     public float starttime = 0.00000f;
@@ -50,8 +47,13 @@ public class feed_script : MonoBehaviour
     public float framerate;
     private float lastframetime;
 
+    public UV_source m_UVsrc;
+
     // Math variables.
     [Header("Math")]
+    public float rateconstant;
+    public float k;
+    public float multiplier = 0.01f;
     public float CA = 0f;
     public float VR = 10f; // reactor volume, m^3
     public float nA = 0f;

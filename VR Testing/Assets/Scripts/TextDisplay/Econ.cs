@@ -99,8 +99,8 @@ public class Econ : MonoBehaviour
 
 	private void Awake()
 	{
-        InitExportEcon();
-        InvokeRepeating("WriteEconLine", 0, 30);
+        //InitExportEcon();
+        //InvokeRepeating("WriteEconLine", 0, 30);
         // Assign window toggle to menu button.
         VR_CharacterController.menuDown += ToggleEconWindow;
         VR_CharacterController.menuDownTriple += ResetEcon;

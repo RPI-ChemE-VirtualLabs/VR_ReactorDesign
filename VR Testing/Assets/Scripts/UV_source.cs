@@ -6,6 +6,7 @@ public class UV_source : MonoBehaviour
 {
     public GameObject UVbutton;
     public GameObject UVwindow;
+    public feed_script fs;
 
     /*
     public Material shinypipe;
@@ -28,6 +29,7 @@ public class UV_source : MonoBehaviour
         rateconstant = 1f;
         UVwindow.GetComponent<Renderer>().material.SetColor("_Color", buttonGlow);
         isEnabled = true;
+        fs.UVbuttonpushed = true;
 	}
 
     public void DisableUV()
@@ -35,6 +37,7 @@ public class UV_source : MonoBehaviour
         rateconstant = 1e-5f;
         UVwindow.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
         isEnabled = false;
+        fs.UVbuttonpushed = false;
 	}
 }
 

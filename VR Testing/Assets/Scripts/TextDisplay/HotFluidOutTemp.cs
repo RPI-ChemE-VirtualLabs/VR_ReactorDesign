@@ -114,7 +114,7 @@ public class HotFluidOutTemp : MonoBehaviour
             }
 
             HotFluidOutputVal = Thout; // HotFluidInputTempValue * HotFluidFlowRateValue + ColdFluidInputTempValue * ColdFluidFlowRateValue;//placeholder function
-            
+            feed_script.GetComponent<feed_script>().rxntemp = HotFluidOutputVal;
             //HotFluidOutputText.GetComponent<Text>().text = "Hot Fluid Outlet Temp.: " + System.Math.Round(HotFluidOutputVal,1) + " K";
         
         }
