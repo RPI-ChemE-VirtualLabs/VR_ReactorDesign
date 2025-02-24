@@ -51,6 +51,7 @@ public class feed_script : MonoBehaviour
     private float lastframetime;
 
     // Math variables.
+    [Header("Math")]
     public float CA = 0f;
     public float VR = 10f; // reactor volume, m^3
     public float nA = 0f;
@@ -185,6 +186,7 @@ public class feed_script : MonoBehaviour
                 dnAdt = F0 * (CAin - CA);
 
                 nA = nA + dnAdt * (runtime - oldruntime);
+                //nA = nA + dnAdt * Time.deltaTime;
 
                 CA = nA / VR;
 

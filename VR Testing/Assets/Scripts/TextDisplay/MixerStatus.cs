@@ -39,6 +39,7 @@ public class MixerStatus : MonoBehaviour
     public Text UVstatustext;
     public Text feedstatustext;
     public Text runtimeText;
+    public Text CAText;
     [SerializeField]
     private TextMeshPro m_mixerStatusDisplay;
 
@@ -71,13 +72,14 @@ public class MixerStatus : MonoBehaviour
 
         // Feed flow.
         feedstatustext.GetComponent<Text>().text = "Feed flow (m3/min): " + m_fs.F0;
-
-
+        runtimeText.text = "Runtime: " + System.Math.Round(m_fs.runtime, 3);
+        CAText.text = "CA: " + System.Math.Round(m_fs.CA, 3);
     }
 
     // Display input and output temperatures for hot and cold fluid.
     private void DisplayFluidTemp()
     {
+        // TODO: Round values to 3.1
         string txt = "";
         txt += "Hot fluid input temp: " + hfit.HotFluidInputTempVal + "\n";
         txt += "Hot fluid output temp: " + hfot.HotFluidOutputVal + "\n";
@@ -89,7 +91,7 @@ public class MixerStatus : MonoBehaviour
     private void DisplayFluidFlow()
     {
         string txt = "";
-        txt += "Hot fluid flow rate: " + hffr.HotFluidFlowRateVal + "\n";
+        txt += "Hot fluid flow rate: " + hffr.HFValue+ "\n";
         txt += "Feed consumed: " + hffr.HWconsumed + "kg\n";
         txt += "Cold fluid flow rate: " + cffr.ColdFluidFlowRateVal + "\n";
         txt += "Cold fluid consumed: " + cffr.CWconsumed + "\n";

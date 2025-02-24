@@ -48,7 +48,7 @@ public class HotFluidFlowRate : MonoBehaviour
         }
 
         
-        HotFluidConsumedText.GetComponent<Text>().text = "Feed Consumed: " + System.Math.Round(HWconsumed, 0) + " kg";
+        HotFluidConsumedText.GetComponent<Text>().text = "Feed Consumed: " + System.Math.Round(HWconsumed, 3) + " kg";
 
 
     }

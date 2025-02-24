@@ -36,6 +36,7 @@ public class VRMixerButton : VRButton
         {
             feedS.impellerOn = !feedS.impellerOn;
             impel.impellerbuttonpushed = !impel.impellerbuttonpushed;
+            GetComponent<MeshRenderer>().material.color = Color.green;
         }
     }
 	public override void OnVRTriggerUp(float pressure)
