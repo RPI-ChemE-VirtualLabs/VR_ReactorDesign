@@ -34,14 +34,21 @@ public class MixerStatus : MonoBehaviour
     [SerializeField] ColdFluidFlowRate cffr;
 
     [Header("Mixer Status")]
+    [SerializeField]
+    private TextMeshPro m_mixerStatusDisplay;
 
+    [Header("Chemical Status")]
+    [SerializeField]
+    private TextMeshPro m_chemStatusDisplay;
+
+
+    /*
     public Text statustext;
     public Text UVstatustext;
     public Text feedstatustext;
     public Text runtimeText;
     public Text CAText;
-    [SerializeField]
-    private TextMeshPro m_mixerStatusDisplay;
+    */
 
 	// Start is called before the first frame update
 	void Start()
@@ -59,6 +66,8 @@ public class MixerStatus : MonoBehaviour
     {
         DisplayFluidTemp();
         DisplayFluidFlow();
+        DisplayMixerStatus();
+        DisplayPH();
         /* Ternary statements:
          *   fs.Impellerbuttonpushed ? "On" : "Off"
          * is essentially:
@@ -67,6 +76,7 @@ public class MixerStatus : MonoBehaviour
          * else
          *  return "Off";
          */
+        /*
         statustext.text = "Mixer Status: " + (m_fs.impellerOn ? "On" : "Off");
         UVstatustext.text = "UV Status:" + (m_uvSrc.isEnabled ? "On" : "Off");
 
@@ -74,6 +84,7 @@ public class MixerStatus : MonoBehaviour
         feedstatustext.GetComponent<Text>().text = "Feed flow (m3/min): " + m_fs.F0;
         runtimeText.text = "Runtime: " + System.Math.Round(m_fs.runtime, 3);
         CAText.text = "CA: " + System.Math.Round(m_fs.CA, 3);
+        */
     }
 
     // Display input and output temperatures for hot and cold fluid.
@@ -107,5 +118,13 @@ public class MixerStatus : MonoBehaviour
         txt += "Runtime (s): " + m_fs.runtime + "\n";
         txt += "C_A (mol/m^3): " + m_fs.CA + "\n";
         m_mixerStatusDisplay.text = txt;
+    }
+
+    private void DisplayPH()
+    {
+        string txt = "";
+        txt += "pH value: " + m_fs.pHvalue + "\n";
+        txt += "NaOH used (kg): " + m_fs.NaOHConsumed + "\n";
+        m_chemStatusDisplay.text = txt;
     }
 }

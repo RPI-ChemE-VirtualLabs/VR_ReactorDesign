@@ -342,6 +342,7 @@ public class Econ : MonoBehaviour
 
     private void OnDestroy()
     {
-        fs.Close();
+        if(fs != null)
+            fs.Close();
     }
 }
