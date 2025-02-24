@@ -26,11 +26,21 @@ public class MixerStatus : MonoBehaviour
     [SerializeField] HotFluidOutTemp hfot;
     [SerializeField] ColdFluidOutputTemp cfot;
 
-    [Header("UV Status")]
+    [Header("Fluid Flow")]
+
+    [SerializeField]
+    private TextMeshPro m_fluidFlowDisplay;
+    [SerializeField] HotFluidFlowRate hffr;
+    [SerializeField] ColdFluidFlowRate cffr;
+
+    [Header("Mixer Status")]
 
     public Text statustext;
     public Text UVstatustext;
     public Text feedstatustext;
+    public Text runtimeText;
+    [SerializeField]
+    private TextMeshPro m_mixerStatusDisplay;
 
 	// Start is called before the first frame update
 	void Start()
@@ -47,6 +57,7 @@ public class MixerStatus : MonoBehaviour
     void Update()
     {
         DisplayFluidTemp();
+        DisplayFluidFlow();
         /* Ternary statements:
          *   fs.Impellerbuttonpushed ? "On" : "Off"
          * is essentially:
@@ -73,5 +84,26 @@ public class MixerStatus : MonoBehaviour
         txt += "Cold fluid input temp: " + cfit.ColdFluidInputTempVal+ "\n";
         txt += "Cold fluid output temp: " + cfot.ColdFluidOutputVal + "\n";
         m_fluidTempDisplay.text = txt;
+    }
+
+    private void DisplayFluidFlow()
+    {
+        string txt = "";
+        txt += "Hot fluid flow rate: " + hffr.HotFluidFlowRateVal + "\n";
+        txt += "Feed consumed: " + hffr.HWconsumed + "kg\n";
+        txt += "Cold fluid flow rate: " + cffr.ColdFluidFlowRateVal + "\n";
+        txt += "Cold fluid consumed: " + cffr.CWconsumed + "\n";
+        m_fluidFlowDisplay.text = txt;
+    }
+
+    private void DisplayMixerStatus()
+    {
+        string txt = "";
+        txt += "Mixer Status: " + (m_fs.impellerOn ? "On" : "Off") + "\n";
+        txt += "UV Status:" + (m_uvSrc.isEnabled ? "On" : "Off") + "\n";
+        txt += "Feed flow (m^3/min): " + m_fs.F0 + "\n";
+        txt += "Runtime (s): " + m_fs.runtime + "\n";
+        txt += "C_A (mol/m^3): " + m_fs.CA + "\n";
+        m_mixerStatusDisplay.text = txt;
     }
 }

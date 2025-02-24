@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ColdFluidFlowRate : MonoBehaviour
 {
-    public Tuner ColdFluidFlowRateTuner;
+    //public Tuner ColdFluidFlowRateTuner;
+    [SerializeField] private VRKeypad kp;
     public Text ColdFluidFlowRateText;
     public Text ColdFluidConsumedText;
     [SerializeField] float Value;
@@ -24,13 +25,6 @@ public class ColdFluidFlowRate : MonoBehaviour
     public Material yellow;
     public Material stairprops;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -41,9 +35,11 @@ public class ColdFluidFlowRate : MonoBehaviour
 
         //if (ColdFluidFlowRateTuner)
         //{
-            //Value = ColdFluidFlowRateTuner.GetComponent<Tuner>().Percentage;
-            ColdFluidFlowRateVal = 50 + Value * 1950; //Converting percentage to actual value, need to be replaced by the value of divison of range of data and 100
-                                                      // kg/min  
+        //Value = ColdFluidFlowRateTuner.GetComponent<Tuner>().Percentage;
+        //ColdFluidFlowRateVal = 50 + Value * 1950; //Converting percentage to actual value, need to be replaced by the value of divison of range of data and 100
+        // kg/min  
+        //ColdFluidFlowRateVal = kp.currentValue;
+        ColdFluidFlowRateVal = kp.currentValue;
 
             CWconsumed = CWconsumed + ColdFluidFlowRateVal * (runtime - runtimeprev)/60d; // kg
 
@@ -52,7 +48,7 @@ public class ColdFluidFlowRate : MonoBehaviour
             ColdFluidConsumedText.GetComponent<Text>().text = "Cold Fluid Consumed: " + System.Math.Round(CWconsumed, 0) + " kg";
         //}
 
-
+        /*
         ResetCFFButton.GetComponent<MeshRenderer>().material = stairprops;
 
         if (Input.GetMouseButtonDown(0))
@@ -81,6 +77,6 @@ public class ColdFluidFlowRate : MonoBehaviour
 
         ResetCFFButton.GetComponent<MeshRenderer>().material = stairprops;
 
-        
+        */
     }
 }

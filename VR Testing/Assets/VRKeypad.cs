@@ -16,7 +16,10 @@ public class VRKeypad : MonoBehaviour
         if (val == -1)
             tempValue = 0;
         else if (val == -2)
+        {
             currentValue = tempValue;
+            tempValue = 0;
+        }
         else
         {
             tempValue *= 10;
